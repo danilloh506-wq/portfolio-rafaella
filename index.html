@@ -11,13 +11,20 @@
 </head>
 <body>
 
-  <!-- GRAIN OVERLAY — textura de filme -->
+  <!-- GRAIN -->
   <svg class="grain" aria-hidden="true" focusable="false">
     <filter id="gf" x="0%" y="0%" width="100%" height="100%">
       <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="4" stitchTiles="stitch"/>
     </filter>
     <rect width="100%" height="100%" filter="url(#gf)"/>
   </svg>
+
+  <!-- BACK TO TOP -->
+  <button class="back-top" id="back-top" aria-label="Voltar ao topo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+  </button>
 
   <!-- PRELOADER -->
   <div class="preloader" id="preloader">
@@ -33,14 +40,36 @@
     <span class="cursor-label" id="cursor-label"></span>
   </div>
 
+  <!-- MOBILE OVERLAY MENU -->
+  <div class="menu-overlay" id="menu-overlay" aria-hidden="true">
+    <nav class="menu-overlay__nav" aria-label="Menu principal">
+      <a href="#about"   class="menu-overlay__link" data-menu-link><span>01</span>Sobre</a>
+      <a href="#work"    class="menu-overlay__link" data-menu-link><span>02</span>Coleções</a>
+      <a href="#contact" class="menu-overlay__link" data-menu-link><span>03</span>Contato</a>
+    </nav>
+    <div class="menu-overlay__foot">
+      <a href="mailto:rafaella@email.com" class="menu-overlay__email">rafaella@email.com</a>
+      <div class="menu-overlay__social">
+        <a href="#">Instagram</a>
+        <span>·</span>
+        <a href="#">Behance</a>
+      </div>
+    </div>
+  </div>
+
   <!-- NAV -->
   <nav class="nav" id="nav">
-    <div class="nav__logo"><span class="nav__r">R</span>C</div>
-    <ul class="nav__links">
-      <li><a href="#about" data-nav>Sobre</a></li>
-      <li><a href="#work" data-nav>Coleções</a></li>
+    <a href="#home" class="nav__logo" aria-label="Início"><span class="nav__r">R</span>C</a>
+    <ul class="nav__links" role="list">
+      <li><a href="#about"   data-nav>Sobre</a></li>
+      <li><a href="#work"    data-nav>Coleções</a></li>
       <li><a href="#contact" data-nav>Contato</a></li>
     </ul>
+    <button class="nav__burger" id="nav-burger" aria-label="Abrir menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
 
   <!-- HERO -->
@@ -49,7 +78,6 @@
       <img src="assets/marble-dark.svg" alt="" class="hero__marble" aria-hidden="true">
     </div>
     <div class="hero__vignette" aria-hidden="true"></div>
-
     <div class="hero__content">
       <p class="hero__eyebrow">Designer de Moda</p>
       <h1 class="hero__name">
@@ -59,7 +87,6 @@
       <div class="hero__rule" id="hero-rule"></div>
       <p class="hero__tagline" id="hero-tagline">Ela não seduz gritando. Ela atrai em silêncio.</p>
     </div>
-
     <div class="hero__scroll" id="hero-scroll">
       <span class="hero__scroll-line"></span>
       <span class="hero__scroll-label">scroll</span>
@@ -71,7 +98,8 @@
     <div class="about__wrap">
       <div class="about__visual">
         <div class="about__frame js-clip-reveal">
-          <img src="assets/marble-light.svg" alt="Foto Rafaella Costa" class="about__img">
+          <img src="assets/marble-light.svg" alt="Foto Rafaella Costa" class="about__img" loading="lazy">
+          <div class="about__placeholder-label libre">Foto</div>
           <div class="fc fc--tl"></div>
           <div class="fc fc--br"></div>
         </div>
@@ -89,12 +117,12 @@
           Com raízes na estética cinquentista e no glamour do cinema noir,
           cada coleção é construída como uma narrativa visual: íntima, refinada e inconfundível.
         </p>
-        <a href="#work" class="btn-text js-magnetic js-fade-up">Ver coleções →</a>
+        <a href="#work" class="btn-text js-magnetic js-fade-up" data-nav>Ver coleções →</a>
       </div>
     </div>
   </section>
 
-  <!-- WORK — horizontal cinematic scroll -->
+  <!-- WORK -->
   <section class="work" id="work">
     <div class="work__head">
       <span class="section-label js-fade-up">02 — Coleções</span>
@@ -105,6 +133,7 @@
       <div class="work__track" id="work-track">
 
         <article class="work__card js-tilt" data-cursor-label="ver">
+          <div class="work__card-num libre">01</div>
           <div class="work__card-media">
             <div class="work__card-img js-card-img" style="background-image:url('assets/mood-kiss.jpg')"></div>
           </div>
@@ -117,6 +146,7 @@
         </article>
 
         <article class="work__card js-tilt" data-cursor-label="ver">
+          <div class="work__card-num libre">02</div>
           <div class="work__card-media">
             <div class="work__card-img js-card-img" style="background-image:url('assets/mood-wine.jpg')"></div>
           </div>
@@ -129,6 +159,7 @@
         </article>
 
         <article class="work__card js-tilt" data-cursor-label="ver">
+          <div class="work__card-num libre">03</div>
           <div class="work__card-media">
             <div class="work__card-img js-card-img" style="background-image:url('assets/mood-ink.png')"></div>
           </div>
@@ -141,6 +172,7 @@
         </article>
 
         <article class="work__card js-tilt" data-cursor-label="ver">
+          <div class="work__card-num libre">04</div>
           <div class="work__card-media">
             <div class="work__card-img js-card-img" style="background-image:url('assets/mood-retro.jpg')"></div>
           </div>
@@ -153,6 +185,7 @@
         </article>
 
         <article class="work__card js-tilt" data-cursor-label="ver">
+          <div class="work__card-num libre">05</div>
           <div class="work__card-media">
             <div class="work__card-img js-card-img" style="background-image:url('assets/mood-cabaret.jpg')"></div>
           </div>
@@ -165,6 +198,7 @@
         </article>
 
         <article class="work__card js-tilt" data-cursor-label="ver">
+          <div class="work__card-num libre">06</div>
           <div class="work__card-media">
             <div class="work__card-img js-card-img" style="background-image:url('assets/mood-collage.jpg')"></div>
           </div>
@@ -190,7 +224,7 @@
   <!-- PHILOSOPHY -->
   <section class="philosophy">
     <div class="philosophy__bg">
-      <img src="assets/mood-martini.jpg" alt="" class="philosophy__img" aria-hidden="true">
+      <img src="assets/mood-martini.jpg" alt="" class="philosophy__img" loading="lazy" aria-hidden="true">
     </div>
     <div class="philosophy__overlay"></div>
     <div class="philosophy__wrap">
@@ -205,40 +239,64 @@
   <!-- MOOD STRIP -->
   <div class="mood-strip" aria-hidden="true">
     <div class="mood-strip__track">
-      <img src="assets/mood-lips.jpg"    alt="" class="mood-strip__img">
-      <img src="assets/mood-fruits.jpg"  alt="" class="mood-strip__img">
-      <img src="assets/mood-martini.jpg" alt="" class="mood-strip__img">
-      <img src="assets/mood-collage.jpg" alt="" class="mood-strip__img">
-      <img src="assets/mood-retro.jpg"   alt="" class="mood-strip__img">
-      <img src="assets/mood-wine.jpg"    alt="" class="mood-strip__img">
-      <img src="assets/mood-lips.jpg"    alt="" class="mood-strip__img">
-      <img src="assets/mood-fruits.jpg"  alt="" class="mood-strip__img">
-      <img src="assets/mood-martini.jpg" alt="" class="mood-strip__img">
-      <img src="assets/mood-collage.jpg" alt="" class="mood-strip__img">
-      <img src="assets/mood-retro.jpg"   alt="" class="mood-strip__img">
-      <img src="assets/mood-wine.jpg"    alt="" class="mood-strip__img">
+      <img src="assets/mood-lips.jpg"    alt="" class="mood-strip__img" loading="lazy">
+      <img src="assets/mood-fruits.jpg"  alt="" class="mood-strip__img" loading="lazy">
+      <img src="assets/mood-martini.jpg" alt="" class="mood-strip__img" loading="lazy">
+      <img src="assets/mood-collage.jpg" alt="" class="mood-strip__img" loading="lazy">
+      <img src="assets/mood-retro.jpg"   alt="" class="mood-strip__img" loading="lazy">
+      <img src="assets/mood-wine.jpg"    alt="" class="mood-strip__img" loading="lazy">
+      <img src="assets/mood-lips.jpg"    alt="" class="mood-strip__img" loading="lazy">
+      <img src="assets/mood-fruits.jpg"  alt="" class="mood-strip__img" loading="lazy">
+      <img src="assets/mood-martini.jpg" alt="" class="mood-strip__img" loading="lazy">
+      <img src="assets/mood-collage.jpg" alt="" class="mood-strip__img" loading="lazy">
+      <img src="assets/mood-retro.jpg"   alt="" class="mood-strip__img" loading="lazy">
+      <img src="assets/mood-wine.jpg"    alt="" class="mood-strip__img" loading="lazy">
     </div>
   </div>
 
   <!-- CONTACT -->
   <section class="contact" id="contact">
     <div class="contact__wrap">
-      <span class="section-label js-fade-up">03 — Contato</span>
-      <h2 class="contact__title js-title-reveal">Vamos criar<br>algo juntos?</h2>
-      <a href="mailto:rafaella@email.com" class="contact__email js-fade-up">rafaella@email.com</a>
-      <div class="contact__social js-fade-up">
-        <a href="#" class="contact__link js-magnetic">Instagram</a>
-        <span class="contact__sep libre">·</span>
-        <a href="#" class="contact__link js-magnetic">LinkedIn</a>
-        <span class="contact__sep libre">·</span>
-        <a href="#" class="contact__link js-magnetic">Behance</a>
+      <div class="contact__left">
+        <span class="section-label js-fade-up">03 — Contato</span>
+        <h2 class="contact__title js-title-reveal">Vamos criar<br>algo juntos?</h2>
+        <p class="contact__sub js-fade-up">
+          Aberta para projetos editoriais, identidades visuais e colaborações criativas.
+        </p>
+      </div>
+      <div class="contact__right js-fade-up">
+        <a href="mailto:rafaella@email.com" class="contact__cta">
+          <span class="contact__cta-label libre">E-mail</span>
+          <span class="contact__cta-value">rafaella@email.com</span>
+          <span class="contact__cta-arrow">→</span>
+        </a>
+        <a href="https://wa.me/5500000000000" class="contact__cta" target="_blank" rel="noopener">
+          <span class="contact__cta-label libre">WhatsApp</span>
+          <span class="contact__cta-value">+55 (00) 00000-0000</span>
+          <span class="contact__cta-arrow">→</span>
+        </a>
+        <div class="contact__social">
+          <a href="#" class="contact__link js-magnetic">Instagram</a>
+          <span class="contact__sep libre">·</span>
+          <a href="#" class="contact__link js-magnetic">LinkedIn</a>
+          <span class="contact__sep libre">·</span>
+          <a href="#" class="contact__link js-magnetic">Behance</a>
+        </div>
       </div>
     </div>
     <div class="contact__mono libre" aria-hidden="true">RC</div>
   </section>
 
   <footer class="footer">
-    <p class="footer__copy libre">© 2025 Rafaella Costa. Todos os direitos reservados.</p>
+    <div class="footer__inner">
+      <span class="footer__brand libre"><span>R</span>C — Rafaella Costa</span>
+      <p class="footer__copy libre">© 2025 Todos os direitos reservados.</p>
+      <div class="footer__social">
+        <a href="#" class="footer__slink">Ig</a>
+        <a href="#" class="footer__slink">Be</a>
+        <a href="#" class="footer__slink">Li</a>
+      </div>
+    </div>
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
