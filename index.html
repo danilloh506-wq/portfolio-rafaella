@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rafaella Costa — Designer de Moda</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Libre+Baskerville:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- GRAIN OVERLAY — textura de filme -->
+  <svg class="grain" aria-hidden="true" focusable="false">
+    <filter id="gf" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="4" stitchTiles="stitch"/>
+    </filter>
+    <rect width="100%" height="100%" filter="url(#gf)"/>
+  </svg>
+
+  <!-- PRELOADER -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__inner">
+      <div class="preloader__logo"><span>R</span>C</div>
+      <div class="preloader__bar"><div class="preloader__fill"></div></div>
+    </div>
+  </div>
+
+  <!-- CURSOR -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursor-ring">
+    <span class="cursor-label" id="cursor-label"></span>
+  </div>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav__logo"><span class="nav__r">R</span>C</div>
+    <ul class="nav__links">
+      <li><a href="#about" data-nav>Sobre</a></li>
+      <li><a href="#work" data-nav>Coleções</a></li>
+      <li><a href="#contact" data-nav>Contato</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero__bg">
+      <img src="assets/marble-dark.svg" alt="" class="hero__marble" aria-hidden="true">
+    </div>
+    <div class="hero__vignette" aria-hidden="true"></div>
+
+    <div class="hero__content">
+      <p class="hero__eyebrow">Designer de Moda</p>
+      <h1 class="hero__name">
+        <span class="hero__line" id="name-line-1">RAFAELLA</span>
+        <span class="hero__line hero__line--offset" id="name-line-2">COSTA</span>
+      </h1>
+      <div class="hero__rule" id="hero-rule"></div>
+      <p class="hero__tagline" id="hero-tagline">Ela não seduz gritando. Ela atrai em silêncio.</p>
+    </div>
+
+    <div class="hero__scroll" id="hero-scroll">
+      <span class="hero__scroll-line"></span>
+      <span class="hero__scroll-label">scroll</span>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about__wrap">
+      <div class="about__visual">
+        <div class="about__frame js-clip-reveal">
+          <img src="assets/marble-light.svg" alt="Foto Rafaella Costa" class="about__img">
+          <div class="fc fc--tl"></div>
+          <div class="fc fc--br"></div>
+        </div>
+        <span class="about__year libre js-fade-up">2021 — 2025</span>
+      </div>
+      <div class="about__text">
+        <span class="section-label js-fade-up">01 — Sobre</span>
+        <h2 class="about__title js-title-reveal">Criação com<br><em>intenção</em></h2>
+        <p class="about__bio js-fade-up">
+          Rafaella Costa é designer de moda com olhar aguçado para a feminilidade contemporânea.
+          Seu trabalho transita entre o elegante e o sensorial — peças que não apenas vestem,
+          mas comunicam uma presença.
+        </p>
+        <p class="about__bio js-fade-up">
+          Com raízes na estética cinquentista e no glamour do cinema noir,
+          cada coleção é construída como uma narrativa visual: íntima, refinada e inconfundível.
+        </p>
+        <a href="#work" class="btn-text js-magnetic js-fade-up">Ver coleções →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK — horizontal cinematic scroll -->
+  <section class="work" id="work">
+    <div class="work__head">
+      <span class="section-label js-fade-up">02 — Coleções</span>
+      <h2 class="work__title js-title-reveal">Trabalhos<br>Selecionados</h2>
+    </div>
+
+    <div class="work__pin" id="work-pin" data-cursor-label="arrastar">
+      <div class="work__track" id="work-track">
+
+        <article class="work__card js-tilt" data-cursor-label="ver">
+          <div class="work__card-media">
+            <div class="work__card-img js-card-img" style="background-image:url('assets/mood-kiss.jpg')"></div>
+          </div>
+          <div class="work__card-overlay"></div>
+          <div class="work__card-info">
+            <span class="work__cat">Editorial</span>
+            <h3 class="work__name">Noite Suave</h3>
+            <span class="work__yr libre">2025</span>
+          </div>
+        </article>
+
+        <article class="work__card js-tilt" data-cursor-label="ver">
+          <div class="work__card-media">
+            <div class="work__card-img js-card-img" style="background-image:url('assets/mood-wine.jpg')"></div>
+          </div>
+          <div class="work__card-overlay"></div>
+          <div class="work__card-info">
+            <span class="work__cat">Coleção Verão</span>
+            <h3 class="work__name">Veludo &amp; Seda</h3>
+            <span class="work__yr libre">2024</span>
+          </div>
+        </article>
+
+        <article class="work__card js-tilt" data-cursor-label="ver">
+          <div class="work__card-media">
+            <div class="work__card-img js-card-img" style="background-image:url('assets/mood-ink.png')"></div>
+          </div>
+          <div class="work__card-overlay"></div>
+          <div class="work__card-info">
+            <span class="work__cat">Branding</span>
+            <h3 class="work__name">Identidade Visual</h3>
+            <span class="work__yr libre">2024</span>
+          </div>
+        </article>
+
+        <article class="work__card js-tilt" data-cursor-label="ver">
+          <div class="work__card-media">
+            <div class="work__card-img js-card-img" style="background-image:url('assets/mood-retro.jpg')"></div>
+          </div>
+          <div class="work__card-overlay"></div>
+          <div class="work__card-info">
+            <span class="work__cat">Moda Autoral</span>
+            <h3 class="work__name">Silhuetas do Entardecer</h3>
+            <span class="work__yr libre">2023</span>
+          </div>
+        </article>
+
+        <article class="work__card js-tilt" data-cursor-label="ver">
+          <div class="work__card-media">
+            <div class="work__card-img js-card-img" style="background-image:url('assets/mood-cabaret.jpg')"></div>
+          </div>
+          <div class="work__card-overlay"></div>
+          <div class="work__card-info">
+            <span class="work__cat">Desfile</span>
+            <h3 class="work__name">Dentro da Sombra</h3>
+            <span class="work__yr libre">2023</span>
+          </div>
+        </article>
+
+        <article class="work__card js-tilt" data-cursor-label="ver">
+          <div class="work__card-media">
+            <div class="work__card-img js-card-img" style="background-image:url('assets/mood-collage.jpg')"></div>
+          </div>
+          <div class="work__card-overlay"></div>
+          <div class="work__card-info">
+            <span class="work__cat">Mood Board</span>
+            <h3 class="work__name">O Universo RC</h3>
+            <span class="work__yr libre">2022</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <div class="work__progress">
+      <div class="work__progress-track">
+        <div class="work__progress-fill" id="work-progress-fill"></div>
+      </div>
+      <span class="work__progress-count libre" id="work-count">01 / 06</span>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY -->
+  <section class="philosophy">
+    <div class="philosophy__bg">
+      <img src="assets/mood-martini.jpg" alt="" class="philosophy__img" aria-hidden="true">
+    </div>
+    <div class="philosophy__overlay"></div>
+    <div class="philosophy__wrap">
+      <span class="philosophy__orn libre js-fade-up">✦</span>
+      <blockquote class="philosophy__quote" id="philosophy-quote">
+        <p>"A moda não é apenas o que se veste —<br>é o que se <em>revela</em> ao mundo."</p>
+      </blockquote>
+      <span class="philosophy__orn libre js-fade-up">✦</span>
+    </div>
+  </section>
+
+  <!-- MOOD STRIP -->
+  <div class="mood-strip" aria-hidden="true">
+    <div class="mood-strip__track">
+      <img src="assets/mood-lips.jpg"    alt="" class="mood-strip__img">
+      <img src="assets/mood-fruits.jpg"  alt="" class="mood-strip__img">
+      <img src="assets/mood-martini.jpg" alt="" class="mood-strip__img">
+      <img src="assets/mood-collage.jpg" alt="" class="mood-strip__img">
+      <img src="assets/mood-retro.jpg"   alt="" class="mood-strip__img">
+      <img src="assets/mood-wine.jpg"    alt="" class="mood-strip__img">
+      <img src="assets/mood-lips.jpg"    alt="" class="mood-strip__img">
+      <img src="assets/mood-fruits.jpg"  alt="" class="mood-strip__img">
+      <img src="assets/mood-martini.jpg" alt="" class="mood-strip__img">
+      <img src="assets/mood-collage.jpg" alt="" class="mood-strip__img">
+      <img src="assets/mood-retro.jpg"   alt="" class="mood-strip__img">
+      <img src="assets/mood-wine.jpg"    alt="" class="mood-strip__img">
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="contact__wrap">
+      <span class="section-label js-fade-up">03 — Contato</span>
+      <h2 class="contact__title js-title-reveal">Vamos criar<br>algo juntos?</h2>
+      <a href="mailto:rafaella@email.com" class="contact__email js-fade-up">rafaella@email.com</a>
+      <div class="contact__social js-fade-up">
+        <a href="#" class="contact__link js-magnetic">Instagram</a>
+        <span class="contact__sep libre">·</span>
+        <a href="#" class="contact__link js-magnetic">LinkedIn</a>
+        <span class="contact__sep libre">·</span>
+        <a href="#" class="contact__link js-magnetic">Behance</a>
+      </div>
+    </div>
+    <div class="contact__mono libre" aria-hidden="true">RC</div>
+  </section>
+
+  <footer class="footer">
+    <p class="footer__copy libre">© 2025 Rafaella Costa. Todos os direitos reservados.</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

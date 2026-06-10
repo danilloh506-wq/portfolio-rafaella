@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <filter id="m" x="0%" y="0%" width="100%" height="100%" color-interpolation-filters="linearRGB">
+      <feTurbulence type="turbulence" baseFrequency="0.016 0.008" numOctaves="6" seed="7" result="t"/>
+      <feColorMatrix in="t" type="matrix"
+        values="0 0 0 0 0.90  0 0 0 0 0.86  0 0 0 0 0.78  0 4.8 0 0 -3.4"
+        result="v1"/>
+      <feTurbulence type="turbulence" baseFrequency="0.038 0.014" numOctaves="4" seed="19" result="t2"/>
+      <feColorMatrix in="t2" type="matrix"
+        values="0 0 0 0 0.78  0 0 0 0 0.72  0 0 0 0 0.60  0 5.5 0 0 -4.2"
+        result="v2"/>
+      <feMerge><feMergeNode in="v1"/><feMergeNode in="v2"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="100%" height="100%" fill="#0B0608"/>
+  <rect width="100%" height="100%" filter="url(#m)" opacity="0.78"/>
+</svg>
