@@ -40,7 +40,7 @@
     <span class="cursor-label" id="cursor-label"></span>
   </div>
 
-  <!-- MOBILE OVERLAY MENU -->
+  <!-- MOBILE MENU -->
   <div class="menu-overlay" id="menu-overlay" aria-hidden="true">
     <nav class="menu-overlay__nav" aria-label="Menu principal">
       <a href="#about"   class="menu-overlay__link" data-menu-link><span>01</span>Sobre</a>
@@ -66,9 +66,7 @@
       <li><a href="#contact" data-nav>Contato</a></li>
     </ul>
     <button class="nav__burger" id="nav-burger" aria-label="Abrir menu" aria-expanded="false">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span></span><span></span><span></span>
     </button>
   </nav>
 
@@ -127,6 +125,14 @@
     <div class="work__head">
       <span class="section-label js-fade-up">02 — Coleções</span>
       <h2 class="work__title js-title-reveal">Trabalhos<br>Selecionados</h2>
+    </div>
+
+    <!-- swipe hint (mobile) -->
+    <div class="work__swipe-hint" id="work-swipe-hint" aria-hidden="true">
+      <span>deslize</span>
+      <svg viewBox="0 0 32 12" fill="none">
+        <path d="M0 6h28M22 1l6 5-6 5" stroke="currentColor" stroke-width="0.8"/>
+      </svg>
     </div>
 
     <div class="work__pin" id="work-pin" data-cursor-label="arrastar">
@@ -213,7 +219,7 @@
       </div>
     </div>
 
-    <div class="work__progress">
+    <div class="work__progress" id="work-progress">
       <div class="work__progress-track">
         <div class="work__progress-fill" id="work-progress-fill"></div>
       </div>
@@ -236,22 +242,45 @@
     </div>
   </section>
 
-  <!-- MOOD STRIP -->
+  <!-- MOOD STRIP — duas fileiras em direções opostas -->
   <div class="mood-strip" aria-hidden="true">
-    <div class="mood-strip__track">
-      <img src="assets/mood-lips.jpg"    alt="" class="mood-strip__img" loading="lazy">
-      <img src="assets/mood-fruits.jpg"  alt="" class="mood-strip__img" loading="lazy">
-      <img src="assets/mood-martini.jpg" alt="" class="mood-strip__img" loading="lazy">
-      <img src="assets/mood-collage.jpg" alt="" class="mood-strip__img" loading="lazy">
-      <img src="assets/mood-retro.jpg"   alt="" class="mood-strip__img" loading="lazy">
-      <img src="assets/mood-wine.jpg"    alt="" class="mood-strip__img" loading="lazy">
-      <img src="assets/mood-lips.jpg"    alt="" class="mood-strip__img" loading="lazy">
-      <img src="assets/mood-fruits.jpg"  alt="" class="mood-strip__img" loading="lazy">
-      <img src="assets/mood-martini.jpg" alt="" class="mood-strip__img" loading="lazy">
-      <img src="assets/mood-collage.jpg" alt="" class="mood-strip__img" loading="lazy">
-      <img src="assets/mood-retro.jpg"   alt="" class="mood-strip__img" loading="lazy">
-      <img src="assets/mood-wine.jpg"    alt="" class="mood-strip__img" loading="lazy">
+
+    <div class="mood-strip__row" data-marquee-row>
+      <div class="mood-strip__track" id="mood-track-1">
+        <img src="assets/mood-kiss.jpg"    alt="" class="mood-strip__img" loading="lazy">
+        <img src="assets/mood-wine.jpg"    alt="" class="mood-strip__img" loading="lazy">
+        <img src="assets/mood-cabaret.jpg" alt="" class="mood-strip__img" loading="lazy">
+        <img src="assets/mood-retro.jpg"   alt="" class="mood-strip__img" loading="lazy">
+        <img src="assets/mood-collage.jpg" alt="" class="mood-strip__img" loading="lazy">
+        <img src="assets/mood-ink.png"     alt="" class="mood-strip__img" loading="lazy">
+        <!-- duplicados para loop contínuo -->
+        <img src="assets/mood-kiss.jpg"    alt="" class="mood-strip__img" loading="lazy">
+        <img src="assets/mood-wine.jpg"    alt="" class="mood-strip__img" loading="lazy">
+        <img src="assets/mood-cabaret.jpg" alt="" class="mood-strip__img" loading="lazy">
+        <img src="assets/mood-retro.jpg"   alt="" class="mood-strip__img" loading="lazy">
+        <img src="assets/mood-collage.jpg" alt="" class="mood-strip__img" loading="lazy">
+        <img src="assets/mood-ink.png"     alt="" class="mood-strip__img" loading="lazy">
+      </div>
     </div>
+
+    <div class="mood-strip__row mood-strip__row--rev" data-marquee-row>
+      <div class="mood-strip__track" id="mood-track-2">
+        <img src="assets/mood-lips.jpg"    alt="" class="mood-strip__img" loading="lazy">
+        <img src="assets/mood-fruits.jpg"  alt="" class="mood-strip__img" loading="lazy">
+        <img src="assets/mood-martini.jpg" alt="" class="mood-strip__img" loading="lazy">
+        <img src="assets/mood-retro.jpg"   alt="" class="mood-strip__img" loading="lazy">
+        <img src="assets/mood-wine.jpg"    alt="" class="mood-strip__img" loading="lazy">
+        <img src="assets/mood-collage.jpg" alt="" class="mood-strip__img" loading="lazy">
+        <!-- duplicados -->
+        <img src="assets/mood-lips.jpg"    alt="" class="mood-strip__img" loading="lazy">
+        <img src="assets/mood-fruits.jpg"  alt="" class="mood-strip__img" loading="lazy">
+        <img src="assets/mood-martini.jpg" alt="" class="mood-strip__img" loading="lazy">
+        <img src="assets/mood-retro.jpg"   alt="" class="mood-strip__img" loading="lazy">
+        <img src="assets/mood-wine.jpg"    alt="" class="mood-strip__img" loading="lazy">
+        <img src="assets/mood-collage.jpg" alt="" class="mood-strip__img" loading="lazy">
+      </div>
+    </div>
+
   </div>
 
   <!-- CONTACT -->

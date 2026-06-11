@@ -14,6 +14,8 @@ gsap.ticker.lagSmoothing(0);
 lenis.on('scroll', ScrollTrigger.update);
 lenis.stop();
 
+const isMobile = () => window.innerWidth <= 768;
+
 /* ============================================
    UTILITIES
    ============================================ */
@@ -38,8 +40,8 @@ function wrapQuoteLines(el) {
   const p = el.querySelector('p');
   if (!p) return [];
   const parts = p.innerHTML.split(/<br\s*\/?>/i);
-  p.innerHTML = parts.map(p =>
-    `<span class="q-line"><span class="q-line-in">${p.trim()}</span></span>`
+  p.innerHTML = parts.map(s =>
+    `<span class="q-line"><span class="q-line-in">${s.trim()}</span></span>`
   ).join('');
   return Array.from(el.querySelectorAll('.q-line-in'));
 }
@@ -48,19 +50,20 @@ function wrapQuoteLines(el) {
    PRELOADER
    ============================================ */
 window.addEventListener('DOMContentLoaded', () => {
-  const preloader = document.getElementById('preloader');
-  const logo      = preloader.querySelector('.preloader__logo');
-  const fill      = preloader.querySelector('.preloader__fill');
+  const logo = document.querySelector('.preloader__logo');
+  const fill = document.querySelector('.preloader__fill');
 
   gsap.timeline()
     .set(logo, { opacity: 0, y: 24 })
     .to(logo, { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out' })
     .to(fill, { scaleX: 1, transformOrigin: 'left', duration: 1.1, ease: 'power3.inOut' }, '-=0.1')
-    .to(preloader, {
+    .to('#preloader', {
       yPercent: -100, duration: 1.1, ease: 'power4.inOut', delay: 0.2,
       onComplete() {
-        preloader.style.display = 'none';
+        document.getElementById('preloader').style.display = 'none';
         lenis.start();
+        /* refresh ScrollTrigger depois que o preloader some */
+        ScrollTrigger.refresh();
       }
     })
     .add(heroEntrance, '-=0.5');
@@ -85,7 +88,7 @@ function heroEntrance() {
 /* ============================================
    CURSOR
    ============================================ */
-if (window.innerWidth > 768) {
+if (!isMobile()) {
   const dot   = document.getElementById('cursor');
   const ring  = document.getElementById('cursor-ring');
   const label = document.getElementById('cursor-label');
@@ -96,20 +99,16 @@ if (window.innerWidth > 768) {
     gsap.to(dot, { x: mx, y: my, duration: 0.07, ease: 'none' });
   });
 
-  (function ringLoop() {
+  (function loop() {
     rx += (mx - rx) * 0.08;
     ry += (my - ry) * 0.08;
     gsap.set(ring, { x: rx, y: ry });
-    requestAnimationFrame(ringLoop);
+    requestAnimationFrame(loop);
   })();
 
   document.querySelectorAll('a, button').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      dot.classList.add('on-link'); ring.classList.add('on-link');
-    });
-    el.addEventListener('mouseleave', () => {
-      dot.classList.remove('on-link'); ring.classList.remove('on-link');
-    });
+    el.addEventListener('mouseenter', () => { dot.classList.add('on-link'); ring.classList.add('on-link'); });
+    el.addEventListener('mouseleave', () => { dot.classList.remove('on-link'); ring.classList.remove('on-link'); });
   });
 
   document.querySelectorAll('[data-cursor-label]').forEach(el => {
@@ -141,19 +140,17 @@ function openMenu() {
   overlay.classList.add('open');
   overlay.setAttribute('aria-hidden', 'false');
   lenis.stop();
-
-  gsap.set([mLinks, mFoot], { y: 24, opacity: 0 });
-  gsap.to(mLinks, { y: 0, opacity: 1, duration: 0.65, ease: 'power3.out', stagger: 0.09, delay: 0.2 });
-  gsap.to(mFoot,  { y: 0, opacity: 1, duration: 0.5,  ease: 'power3.out', delay: 0.45 });
+  gsap.set([mLinks, mFoot], { opacity: 0, x: -20 });
+  gsap.to(mLinks, { opacity: 1, x: 0, duration: 0.6, ease: 'power3.out', stagger: 0.08, delay: 0.2 });
+  gsap.to(mFoot,  { opacity: 1, x: 0, duration: 0.5, ease: 'power3.out', delay: 0.42 });
 }
 
 function closeMenu() {
   menuOpen = false;
   burger.classList.remove('open');
   burger.setAttribute('aria-expanded', 'false');
-
   gsap.to([...mLinks, mFoot], {
-    opacity: 0, y: 16, duration: 0.35, ease: 'power2.in',
+    opacity: 0, x: -12, duration: 0.3, ease: 'power2.in',
     onComplete() {
       overlay.classList.remove('open');
       overlay.setAttribute('aria-hidden', 'true');
@@ -169,70 +166,52 @@ mLinks.forEach(link => {
     e.preventDefault();
     const target = link.getAttribute('href');
     closeMenu();
-    setTimeout(() => {
-      lenis.scrollTo(target, { offset: -80, duration: 1.4, ease: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
-    }, 450);
+    setTimeout(() => lenis.scrollTo(target, { offset: -68, duration: 1.4 }), 420);
   });
 });
 
 /* ============================================
-   NAV SMOOTH SCROLL WITH OFFSET
+   NAV SCROLL WITH OFFSET
    ============================================ */
 document.querySelectorAll('a[data-nav]').forEach(a => {
   a.addEventListener('click', e => {
     const href = a.getAttribute('href');
-    if (!href.startsWith('#')) return;
+    if (!href || !href.startsWith('#')) return;
     e.preventDefault();
     lenis.scrollTo(href, { offset: -80, duration: 1.4 });
   });
 });
 
 /* ============================================
-   NAV ACTIVE STATE + SCROLLED
+   NAV ACTIVE + SCROLLED STATE
    ============================================ */
 const nav      = document.getElementById('nav');
 const navLinks = Array.from(document.querySelectorAll('.nav__links a[data-nav]'));
-const sections = ['about', 'work', 'contact'].map(id => document.getElementById(id));
 
-lenis.on('scroll', ({ scroll }) => {
-  nav.classList.toggle('scrolled', scroll > 50);
-});
+lenis.on('scroll', ({ scroll }) => nav.classList.toggle('scrolled', scroll > 50));
 
-new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (!e.isIntersecting) return;
-    navLinks.forEach(a => {
-      a.classList.toggle('active', a.getAttribute('href') === `#${e.target.id}`);
-    });
-  });
-}, { threshold: 0.45 }).observe && sections.forEach(s => {
-  if (s) new IntersectionObserver(entries => {
+['about', 'work', 'contact'].forEach(id => {
+  const el = document.getElementById(id);
+  if (!el) return;
+  new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
-      navLinks.forEach(a =>
-        a.classList.toggle('active', a.getAttribute('href') === `#${e.target.id}`)
-      );
+      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${id}`));
     });
-  }, { threshold: 0.45 }).observe(s);
+  }, { threshold: 0.4 }).observe(el);
 });
 
 /* ============================================
    BACK TO TOP
    ============================================ */
 const backTop = document.getElementById('back-top');
-
-lenis.on('scroll', ({ scroll }) => {
-  backTop.classList.toggle('visible', scroll > window.innerHeight * 0.8);
-});
-
-backTop.addEventListener('click', () => {
-  lenis.scrollTo(0, { duration: 1.6 });
-});
+lenis.on('scroll', ({ scroll }) => backTop.classList.toggle('visible', scroll > window.innerHeight * 0.8));
+backTop.addEventListener('click', () => lenis.scrollTo(0, { duration: 1.6 }));
 
 /* ============================================
-   MAGNETIC EFFECT
+   MAGNETIC
    ============================================ */
-if (window.innerWidth > 768) {
+if (!isMobile()) {
   document.querySelectorAll('.nav__links a, .js-magnetic').forEach(el => {
     el.addEventListener('mousemove', e => {
       const r = el.getBoundingClientRect();
@@ -278,30 +257,64 @@ document.querySelectorAll('.js-title-reveal').forEach(el => {
 });
 
 /* ============================================
-   FADE-UP REVEALS
+   FADE-UP
    ============================================ */
 document.querySelectorAll('.js-fade-up').forEach(el => {
   gsap.to(el, {
     y: 0, opacity: 1, duration: 1.05, ease: 'power3.out',
-    scrollTrigger: { trigger: el, start: 'top 84%' }
+    scrollTrigger: { trigger: el, start: 'top 86%' }
   });
 });
 
 /* ============================================
-   PHILOSOPHY — quote + parallax
+   PHILOSOPHY
    ============================================ */
 const quoteLines = wrapQuoteLines(document.getElementById('philosophy-quote'));
 if (quoteLines.length) {
   gsap.from(quoteLines, {
-    y: '108%', duration: 1.35, ease: 'power4.out', stagger: 0.2,
+    y: '108%', duration: 1.35, ease: 'power4.out', stagger: 0.22,
     scrollTrigger: { trigger: '#philosophy-quote', start: 'top 78%' }
   });
 }
-
 gsap.to('.philosophy__img', {
   yPercent: 14, ease: 'none',
   scrollTrigger: { trigger: '.philosophy', start: 'top bottom', end: 'bottom top', scrub: 1.2 }
 });
+
+/* ============================================
+   MOOD STRIP — GSAP marquee com duas fileiras
+   ============================================ */
+function createMarquee(trackId, duration, reverse = false) {
+  const track = document.getElementById(trackId);
+  if (!track) return null;
+
+  /* posição inicial para direção reversa */
+  if (reverse) gsap.set(track, { x: '-50%' });
+
+  const tween = gsap.to(track, {
+    x: reverse ? '0%' : '-50%',
+    ease: 'none',
+    duration,
+    repeat: -1,
+  });
+
+  /* pausar/retomar suavemente ao hover */
+  const row = track.closest('[data-marquee-row]');
+  if (row) {
+    row.addEventListener('mouseenter', () =>
+      gsap.to(tween, { timeScale: 0, duration: 0.6, ease: 'power2.out' })
+    );
+    row.addEventListener('mouseleave', () =>
+      gsap.to(tween, { timeScale: 1, duration: 0.8, ease: 'power2.inOut' })
+    );
+  }
+
+  return tween;
+}
+
+/* Fileira 1: esquerda, 34s  |  Fileira 2: direita, 44s */
+createMarquee('mood-track-1', 34, false);
+createMarquee('mood-track-2', 44, true);
 
 /* ============================================
    WORK — HORIZONTAL SCROLL (desktop)
@@ -314,16 +327,21 @@ gsap.matchMedia().add('(min-width: 769px)', () => {
   const cards   = Array.from(track.querySelectorAll('.work__card'));
   const total   = cards.length;
 
-  requestAnimationFrame(() => {
+  /* Aguarda fontes + imagens para medidas corretas */
+  function init() {
     const dist = track.scrollWidth - window.innerWidth;
+    if (dist <= 0) return; /* sem espaço suficiente */
 
     const hTween = gsap.to(track, {
       x: -dist, ease: 'none',
       scrollTrigger: {
         trigger: pin, pin: true,
-        start: 'top top', end: `+=${dist}`, scrub: 1.4,
+        start: 'top top',
+        end: `+=${dist}`,
+        scrub: 1,           /* 1 = responsivo e suave */
+        anticipatePin: 1,
         onUpdate(self) {
-          if (fillEl) fillEl.style.width = (self.progress * 100).toFixed(1) + '%';
+          if (fillEl) fillEl.style.width = (self.progress * 100).toFixed(2) + '%';
           if (countEl) {
             const idx = Math.min(Math.ceil(self.progress * total) || 1, total);
             countEl.textContent = String(idx).padStart(2,'0') + ' / ' + String(total).padStart(2,'0');
@@ -332,15 +350,29 @@ gsap.matchMedia().add('(min-width: 769px)', () => {
       }
     });
 
-    /* Image parallax */
-    cards.forEach(card => {
+    /* Entrada suave de cada card (scale + opacity via containerAnimation) */
+    cards.forEach((card, i) => {
+      /* entrada */
+      gsap.fromTo(card,
+        { opacity: i === 0 ? 1 : 0.4, scale: i === 0 ? 1 : 0.94 },
+        {
+          opacity: 1, scale: 1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: card, containerAnimation: hTween,
+            start: 'left 88%', end: 'left 45%', scrub: 0.8,
+          }
+        }
+      );
+
+      /* parallax da imagem */
       const img    = card.querySelector('.work__card-img');
-      const offset = card.offsetWidth * 0.06;
+      const offset = card.offsetWidth * 0.055;
       gsap.fromTo(img, { x: -offset }, {
         x: offset, ease: 'none',
         scrollTrigger: {
           trigger: card, containerAnimation: hTween,
-          start: 'left right', end: 'right left', scrub: true
+          start: 'left right', end: 'right left', scrub: true,
         }
       });
     });
@@ -350,41 +382,74 @@ gsap.matchMedia().add('(min-width: 769px)', () => {
       card.addEventListener('mousemove', e => {
         const r = card.getBoundingClientRect();
         gsap.to(card, {
-          rotateY: ((e.clientX - r.left) / r.width  - 0.5) * 16,
-          rotateX: ((e.clientY - r.top)  / r.height - 0.5) * -10,
+          rotateY: ((e.clientX - r.left) / r.width  - 0.5) * 14,
+          rotateX: ((e.clientY - r.top)  / r.height - 0.5) * -9,
           transformPerspective: 900,
-          duration: 0.55, ease: 'power2.out', overwrite: 'auto'
+          duration: 0.5, ease: 'power2.out', overwrite: 'auto'
         });
       });
-      card.addEventListener('mouseleave', () => {
-        gsap.to(card, { rotateY: 0, rotateX: 0, duration: 0.9, ease: 'power3.out', overwrite: 'auto' });
-      });
+      card.addEventListener('mouseleave', () =>
+        gsap.to(card, { rotateY: 0, rotateX: 0, duration: 0.9, ease: 'power3.out', overwrite: 'auto' })
+      );
     });
 
-    /* Drag to scroll */
+    /* Drag horizontal → scroll vertical */
     let isDragging = false, startX = 0, startSY = 0;
     pin.style.cursor = 'grab';
+
     pin.addEventListener('mousedown', e => {
       isDragging = true; startX = e.clientX; startSY = window.pageYOffset;
       pin.style.cursor = 'grabbing';
+      e.preventDefault();
     });
     document.addEventListener('mousemove', e => {
       if (!isDragging) return;
-      lenis.scrollTo(startSY + (startX - e.clientX) * 2.2, { immediate: true });
+      const delta = (startX - e.clientX) * 2.4;
+      lenis.scrollTo(startSY + delta, { immediate: true });
     });
     document.addEventListener('mouseup', () => {
       if (!isDragging) return;
-      isDragging = false; pin.style.cursor = 'grab';
+      isDragging = false;
+      pin.style.cursor = 'grab';
     });
+  }
+
+  /* Inicializa após carregamento total para dimensões corretas */
+  if (document.readyState === 'complete') {
+    init();
+  } else {
+    window.addEventListener('load', init, { once: true });
+  }
+
+  /* Recalcula ao redimensionar */
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      ScrollTrigger.getAll().forEach(t => t.kill());
+      init();
+    }, 300);
   });
 
   return () => ScrollTrigger.getAll().forEach(t => t.kill());
 });
 
 /* ============================================
-   CONTACT REVEAL
+   WORK MOBILE — progress via scroll nativo
    ============================================ */
-gsap.from('.contact__title .t-line-in', {
-  y: '105%', duration: 1.25, ease: 'power4.out', stagger: 0.15,
-  scrollTrigger: { trigger: '.contact__title', start: 'top 80%' }
-});
+if (isMobile()) {
+  const pin     = document.getElementById('work-pin');
+  const fillEl  = document.getElementById('work-progress-fill');
+  const countEl = document.getElementById('work-count');
+  const total   = document.querySelectorAll('.work__card').length;
+
+  pin.addEventListener('scroll', () => {
+    const max  = pin.scrollWidth - pin.clientWidth;
+    const prog = max > 0 ? pin.scrollLeft / max : 0;
+    if (fillEl) fillEl.style.width = (prog * 100).toFixed(1) + '%';
+    if (countEl) {
+      const idx = Math.min(Math.ceil(prog * total) || 1, total);
+      countEl.textContent = String(idx).padStart(2,'0') + ' / ' + String(total).padStart(2,'0');
+    }
+  }, { passive: true });
+}
