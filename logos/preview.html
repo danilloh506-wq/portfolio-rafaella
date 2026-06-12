@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Logo Preview — Rafaella Costa · Iterações</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    padding: 2rem;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  body.light { background: #f5f5f5; color: #333; }
+  body.dark  { background: #1a1a1a; color: #eee; }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2.5rem;
+    gap: 1rem;
+  }
+  .header h1 { font-size: 1.4rem; font-weight: 600; }
+  .header p  { font-size: .85rem; opacity: .55; margin-top: .3rem; }
+  .toggle {
+    padding: .5rem 1rem;
+    border: 1px solid currentColor;
+    border-radius: 6px;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    font-size: .875rem;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-size: .72rem;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    opacity: .4;
+    margin-bottom: 1rem;
+    margin-top: 2.75rem;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .card {
+    border: 1px solid rgba(128,128,128,.25);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .card-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem 2rem;
+    min-height: 260px;
+  }
+  body.light .card-img { background: #fff; }
+  body.dark  .card-img { background: #111; }
+  .card-img.on-dark { background: #0B0608 !important; }
+  .card-img img { max-width: 100%; max-height: 220px; object-fit: contain; }
+  .card-label {
+    padding: .75rem 1rem;
+    font-size: .84rem;
+    font-weight: 500;
+    border-top: 1px solid rgba(128,128,128,.25);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  body.light .card-label { background: #fafafa; }
+  body.dark  .card-label { background: #222; }
+  .card-label span { font-size: .72rem; opacity: .45; font-weight: 400; }
+
+  .favicon-strip {
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(128,128,128,.18);
+  }
+  .favicon-strip h2 { font-size: 1rem; font-weight: 600; margin-bottom: 1.75rem; }
+  .favicon-row { display: flex; gap: 3rem; flex-wrap: wrap; align-items: flex-end; }
+  .favicon-item { display: flex; flex-direction: column; align-items: center; gap: .6rem; }
+  .favicon-item .fname { font-size: .75rem; font-weight: 500; opacity: .6; }
+  .favicon-sizes { display: flex; gap: 1.25rem; align-items: flex-end; }
+  .favicon-sizes > div { display: flex; flex-direction: column; align-items: center; gap: .35rem; }
+  .favicon-sizes > div span { font-size: .62rem; opacity: .4; }
+  .fbg { background: #0B0608; display: inline-flex; padding: 2px; }
+</style>
+</head>
+<body class="light">
+
+<div class="header">
+  <div>
+    <h1>Rafaella Costa — Logo Concepts</h1>
+    <p>5 conceitos distintos · Clique em "Escuro" para ver no background real do site (#0B0608)</p>
+  </div>
+  <button class="toggle" onclick="
+    document.body.classList.toggle('dark');
+    document.body.classList.toggle('light');
+    this.textContent = document.body.classList.contains('dark') ? '☀️ Claro' : '🌙 Escuro';
+  ">🌙 Escuro</button>
+</div>
+
+<!-- CONCEPT 1 -->
+<p class="section-title">01 — Monograma RC · decote strapless · curva C evoca neckline</p>
+<div class="grid">
+  <div class="card">
+    <div class="card-img on-dark">
+      <img src="concepts/concept-1.svg" alt="Concept 1 dark">
+    </div>
+    <div class="card-label">concept-1 <span>no site (fundo #0B0608)</span></div>
+  </div>
+  <div class="card">
+    <div class="card-img">
+      <img src="concepts/concept-1.svg" alt="Concept 1 light">
+    </div>
+    <div class="card-label">concept-1 <span>fundo claro</span></div>
+  </div>
+</div>
+
+<!-- CONCEPT 2 -->
+<p class="section-title">02 — Silhueta feminina de costas + wordmark horizontal</p>
+<div class="grid">
+  <div class="card">
+    <div class="card-img on-dark">
+      <img src="concepts/concept-2.svg" alt="Concept 2 dark">
+    </div>
+    <div class="card-label">concept-2 <span>no site (fundo #0B0608)</span></div>
+  </div>
+  <div class="card">
+    <div class="card-img">
+      <img src="concepts/concept-2.svg" alt="Concept 2 light">
+    </div>
+    <div class="card-label">concept-2 <span>fundo claro</span></div>
+  </div>
+</div>
+
+<!-- CONCEPT 3 -->
+<p class="section-title">03 — Art Déco · moldura ornamental · monograma RC Hollywood anos 40</p>
+<div class="grid">
+  <div class="card">
+    <div class="card-img on-dark">
+      <img src="concepts/concept-3.svg" alt="Concept 3 dark">
+    </div>
+    <div class="card-label">concept-3 <span>no site (fundo #0B0608)</span></div>
+  </div>
+  <div class="card">
+    <div class="card-img">
+      <img src="concepts/concept-3.svg" alt="Concept 3 light">
+    </div>
+    <div class="card-label">concept-3 <span>fundo claro</span></div>
+  </div>
+</div>
+
+<!-- CONCEPT 4 -->
+<p class="section-title">04 — Drapeado fluido abstrato · lê como RC e como tecido em queda · vertical</p>
+<div class="grid">
+  <div class="card">
+    <div class="card-img on-dark">
+      <img src="concepts/concept-4.svg" alt="Concept 4 dark">
+    </div>
+    <div class="card-label">concept-4 <span>no site (fundo #0B0608)</span></div>
+  </div>
+  <div class="card">
+    <div class="card-img">
+      <img src="concepts/concept-4.svg" alt="Concept 4 light">
+    </div>
+    <div class="card-label">concept-4 <span>fundo claro</span></div>
+  </div>
+</div>
+
+<!-- CONCEPT 5 -->
+<p class="section-title">05 — "R" redesenhado · perna curva como fenda do vestido · dupla leitura sutil</p>
+<div class="grid">
+  <div class="card">
+    <div class="card-img on-dark">
+      <img src="concepts/concept-5.svg" alt="Concept 5 dark">
+    </div>
+    <div class="card-label">concept-5 <span>no site (fundo #0B0608)</span></div>
+  </div>
+  <div class="card">
+    <div class="card-img">
+      <img src="concepts/concept-5.svg" alt="Concept 5 light">
+    </div>
+    <div class="card-label">concept-5 <span>fundo claro</span></div>
+  </div>
+</div>
+
+<!-- ITERATIONS -->
+<p class="section-title">Iteration-4 ✦ — Silhueta ampulheta pronunciada · asa wine visível · tagline · canvas 640px</p>
+<div class="grid">
+  <div class="card">
+    <div class="card-img on-dark">
+      <img src="iterations/iteration-4.svg" alt="Iteration 4 dark">
+    </div>
+    <div class="card-label">iteration-4 ✦ NOVO <span>no site (fundo #0B0608)</span></div>
+  </div>
+  <div class="card">
+    <div class="card-img">
+      <img src="iterations/iteration-4.svg" alt="Iteration 4 light">
+    </div>
+    <div class="card-label">iteration-4 ✦ NOVO <span>fundo claro</span></div>
+  </div>
+</div>
+
+<p class="section-title">Iteration-3 — Fusão silhueta + drapeado · ornamentos Art Déco abertos · wordmark como paths</p>
+<div class="grid">
+  <div class="card">
+    <div class="card-img on-dark">
+      <img src="iterations/iteration-3.svg" alt="Iteration 3 dark">
+    </div>
+    <div class="card-label">iteration-3 <span>no site (fundo #0B0608)</span></div>
+  </div>
+  <div class="card">
+    <div class="card-img">
+      <img src="iterations/iteration-3.svg" alt="Iteration 3 light">
+    </div>
+    <div class="card-label">iteration-3 <span>fundo claro</span></div>
+  </div>
+</div>
+
+<p class="section-title">Iteration-2</p>
+<div class="grid">
+  <div class="card">
+    <div class="card-img on-dark">
+      <img src="iterations/iteration-2.svg" alt="Iteration 2 dark">
+    </div>
+    <div class="card-label">iteration-2 <span>no site (fundo #0B0608)</span></div>
+  </div>
+  <div class="card">
+    <div class="card-img">
+      <img src="iterations/iteration-2.svg" alt="Iteration 2 light">
+    </div>
+    <div class="card-label">iteration-2 <span>fundo claro</span></div>
+  </div>
+</div>
+
+<p class="section-title">Iteration-1</p>
+<div class="grid">
+  <div class="card">
+    <div class="card-img on-dark">
+      <img src="iterations/iteration-1.svg" alt="Iteration 1 dark">
+    </div>
+    <div class="card-label">iteration-1 <span>no site (fundo #0B0608)</span></div>
+  </div>
+  <div class="card">
+    <div class="card-img">
+      <img src="iterations/iteration-1.svg" alt="Iteration 1 light">
+    </div>
+    <div class="card-label">iteration-1 <span>fundo claro</span></div>
+  </div>
+</div>
+
+<!-- FAVICON CHECK -->
+<div class="favicon-strip">
+  <h2>Verificação de legibilidade — ícone pequeno / favicon</h2>
+  <div class="favicon-row">
+    <div class="favicon-item">
+      <div class="fname">concept-1</div>
+      <div class="favicon-sizes">
+        <div><span class="fbg"><img src="concepts/concept-1.svg" width="64" height="64"></span><span>64px</span></div>
+        <div><span class="fbg"><img src="concepts/concept-1.svg" width="32" height="32"></span><span>32px</span></div>
+        <div><span class="fbg"><img src="concepts/concept-1.svg" width="16" height="16"></span><span>16px</span></div>
+      </div>
+    </div>
+    <div class="favicon-item">
+      <div class="fname">concept-3</div>
+      <div class="favicon-sizes">
+        <div><span class="fbg"><img src="concepts/concept-3.svg" width="64" height="64"></span><span>64px</span></div>
+        <div><span class="fbg"><img src="concepts/concept-3.svg" width="32" height="32"></span><span>32px</span></div>
+        <div><span class="fbg"><img src="concepts/concept-3.svg" width="16" height="16"></span><span>16px</span></div>
+      </div>
+    </div>
+    <div class="favicon-item">
+      <div class="fname">concept-4</div>
+      <div class="favicon-sizes">
+        <div><span class="fbg"><img src="concepts/concept-4.svg" width="64" height="64"></span><span>64px</span></div>
+        <div><span class="fbg"><img src="concepts/concept-4.svg" width="32" height="32"></span><span>32px</span></div>
+        <div><span class="fbg"><img src="concepts/concept-4.svg" width="16" height="16"></span><span>16px</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

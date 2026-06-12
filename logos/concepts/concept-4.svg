@@ -1,0 +1,251 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 640">
+
+  <!--
+    RAFAELLA COSTA — Concept 4
+    "Drape Form" — forma fluida caligráfica
+    evocando o drapeado de seda em movimento,
+    lida como RC ou tecido caindo.
+    Paleta: #C41E3A crimson · #5C1428 wine · #0B0608 fundo · #F5EDE6 off-white
+  -->
+
+  <!-- ── BACKGROUND ── -->
+  <g id="background">
+    <rect width="512" height="640" fill="#0B0608"/>
+  </g>
+
+
+  <!-- ── ICON — fluid drape abstraction ── -->
+  <!--
+    A forma nasce de um ponto no topo (o laço do ombro),
+    abre em duas asas simétricas que se curvam como um S
+    — sugerindo seios, cintura, quadril —
+    e termina numa abertura na base (a fenda do vestido).
+    A asa esquerda é a diagonal do R, a asa direita o arco do C.
+  -->
+  <g id="icon-fluid">
+
+    <!-- Sombra difusa para profundidade -->
+    <ellipse cx="256" cy="300" rx="105" ry="230" fill="#C41E3A" opacity="0.06"/>
+
+    <!-- ── Asa ESQUERDA (crimson principal) ── -->
+    <!--
+      Nasce perto do centro-topo, curva para a esquerda
+      descendo com volume, aperta na cintura (~y=265),
+      alarga no quadril (~y=360) e fecha na fenda.
+    -->
+    <path id="wing-left"
+      d="
+        M 256 52
+        C 248 54, 230 62, 214 78
+        C 196 96, 186 122, 186 150
+        C 186 178, 198 200, 204 224
+        C 210 248, 208 262, 200 278
+        C 192 295, 178 308, 172 328
+        C 165 350, 168 376, 178 398
+        C 188 420, 204 440, 216 455
+        C 224 464, 234 472, 242 478
+        C 236 470, 226 454, 222 434
+        C 218 412, 224 390, 232 368
+        C 240 346, 248 322, 248 294
+        C 248 268, 238 248, 232 224
+        C 226 200, 224 178, 230 154
+        C 236 130, 248 108, 256 88
+        C 258 76, 258 62, 256 52
+        Z
+      "
+      fill="#C41E3A"
+    />
+
+    <!-- ── Asa DIREITA (wine, ligeiramente atrás) ── -->
+    <path id="wing-right"
+      d="
+        M 256 52
+        C 264 54, 282 62, 298 78
+        C 316 96, 326 122, 326 150
+        C 326 178, 314 200, 308 224
+        C 302 248, 304 262, 312 278
+        C 320 295, 334 308, 340 328
+        C 347 350, 344 376, 334 398
+        C 324 420, 308 440, 296 455
+        C 288 464, 278 472, 270 478
+        C 276 470, 286 454, 290 434
+        C 294 412, 288 390, 280 368
+        C 272 346, 264 322, 264 294
+        C 264 268, 274 248, 280 224
+        C 286 200, 288 178, 282 154
+        C 276 130, 264 108, 256 88
+        C 254 76, 254 62, 256 52
+        Z
+      "
+      fill="#5C1428"
+    />
+
+    <!-- ── Blend central: fusão suave das duas asas ── -->
+    <path id="center-blend"
+      d="
+        M 256 60
+        C 250 72, 244 96, 244 124
+        C 244 152, 252 174, 256 198
+        C 260 174, 268 152, 268 124
+        C 268 96, 262 72, 256 60
+        Z
+      "
+      fill="#C41E3A"
+      opacity="0.5"
+    />
+
+    <!-- ── Fenda central: linha caligráfica ── -->
+    <!--
+      A linha mais fina que percorre o centro de cima a baixo,
+      sugerindo a abertura do vestido — o elemento mais caligráfico.
+    -->
+    <path id="slit"
+      d="
+        M 256 56
+        C 254 90, 252 130, 255 170
+        C 257 205, 260 230, 258 262
+        C 256 294, 252 322, 254 358
+        C 256 390, 260 418, 257 452
+        C 256 462, 255 472, 254 480
+      "
+      fill="none"
+      stroke="#0B0608"
+      stroke-width="3"
+      stroke-linecap="round"
+      opacity="0.7"
+    />
+
+    <!-- ── Highlight de seda: reflexo na asa esquerda ── -->
+    <path id="sheen-left"
+      d="
+        M 218 88
+        C 210 112, 204 142, 206 170
+        C 208 196, 216 216, 218 240
+        C 220 262, 216 282, 210 304
+        C 204 326, 196 346, 196 370
+        C 196 392, 202 412, 210 430
+      "
+      fill="none"
+      stroke="#F5EDE6"
+      stroke-width="1.8"
+      stroke-linecap="round"
+      opacity="0.22"
+    />
+
+    <!-- ── Highlight de seda: reflexo na asa direita ── -->
+    <path id="sheen-right"
+      d="
+        M 294 88
+        C 302 112, 308 142, 306 170
+        C 304 196, 296 216, 294 240
+        C 292 262, 296 282, 302 304
+        C 308 326, 316 346, 316 370
+        C 316 392, 310 412, 302 430
+      "
+      fill="none"
+      stroke="#F5EDE6"
+      stroke-width="1.4"
+      stroke-linecap="round"
+      opacity="0.15"
+    />
+
+    <!-- ── Nó superior: o laço/gather no topo ── -->
+    <!--
+      O ponto onde o tecido se prende — um pequeno nó
+      orgânico que ancora a forma toda.
+    -->
+    <path id="knot"
+      d="
+        M 256 44
+        C 246 44, 238 48, 236 54
+        C 234 60, 238 66, 244 68
+        C 248 70, 253 70, 256 68
+        C 259 70, 264 70, 268 68
+        C 274 66, 278 60, 276 54
+        C 274 48, 266 44, 256 44
+        Z
+      "
+      fill="#C41E3A"
+    />
+
+    <!-- ── Reflexo no nó ── -->
+    <ellipse cx="252" cy="54" rx="4" ry="2.5"
+      fill="#F5EDE6" opacity="0.3" transform="rotate(-15 252 54)"/>
+
+    <!-- ── Abertura da fenda na base ── -->
+    <!--
+      O final da forma se abre levemente,
+      como o corte de um vestido tubinho.
+    -->
+    <path id="slit-base"
+      d="
+        M 248 472
+        C 242 476, 232 480, 220 484
+        L 225 484
+        C 235 482, 246 478, 252 474
+        C 252 474, 252 474, 256 478
+        C 260 474, 260 474, 260 474
+        C 266 478, 277 482, 287 484
+        L 292 484
+        C 280 480, 270 476, 264 472
+        Z
+      "
+      fill="#C41E3A"
+      opacity="0.7"
+    />
+
+  </g>
+
+
+  <!-- ── WORDMARK — stacked vertical ── -->
+  <g id="wordmark">
+
+    <!-- Linha divisória wine -->
+    <line x1="80" y1="518" x2="432" y2="518"
+      stroke="#5C1428" stroke-width="0.75" opacity="0.9"/>
+
+    <!--
+      Texto como <text> com Georgia/serif — sistema elegante e confiável.
+      "RAFAELLA" maior, tracking amplo — linha 1
+      "COSTA" menor, tracking mais amplo ainda — linha 2
+      Ambas centralizadas em x=256.
+    -->
+
+    <!-- RAFAELLA -->
+    <text
+      x="256"
+      y="554"
+      text-anchor="middle"
+      font-family="Georgia, 'Times New Roman', serif"
+      font-size="32"
+      font-weight="400"
+      fill="#F5EDE6"
+      letter-spacing="10"
+    >RAFAELLA</text>
+
+    <!-- COSTA -->
+    <text
+      x="256"
+      y="590"
+      text-anchor="middle"
+      font-family="Georgia, 'Times New Roman', serif"
+      font-size="20"
+      font-weight="400"
+      fill="#F5EDE6"
+      letter-spacing="14"
+    >COSTA</text>
+
+    <!-- Tagline / subtítulo opcional — comentado por padrão
+    <text
+      x="256" y="614"
+      text-anchor="middle"
+      font-family="Georgia, 'Times New Roman', serif"
+      font-size="10"
+      fill="#5C1428"
+      letter-spacing="6"
+    >DESIGNER DE MODA</text>
+    -->
+
+  </g>
+
+</svg>

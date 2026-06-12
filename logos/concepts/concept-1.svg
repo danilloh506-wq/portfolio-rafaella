@@ -1,0 +1,197 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+
+  <!--
+    RAFAELLA COSTA — Monograma RC
+    Conceito 1: Noir Glamour / Jessica Rabbit
+    Mood: sensual, sofisticado, teatral, cinematográfico anos 40-50
+    Paleta: #C41E3A crimson | #5C1428 wine | #0B0608 fundo | #F5EDE6 off-white
+  -->
+
+  <!-- ─── BACKGROUND ──────────────────────────────────────────── -->
+  <g id="background">
+    <rect width="512" height="512" fill="#0B0608"/>
+  </g>
+
+  <!-- ─── ORNAMENTS ───────────────────────────────────────────── -->
+  <g id="ornaments">
+
+    <!-- Linhas editoriais superiores -->
+    <line x1="68"  y1="152" x2="218" y2="152" stroke="#5C1428" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="294" y1="152" x2="444" y2="152" stroke="#5C1428" stroke-width="1.5" stroke-linecap="round"/>
+
+    <!-- Losango central superior -->
+    <path d="M256,143 L261,152 L256,161 L251,152 Z" fill="#C41E3A"/>
+
+    <!-- Linhas editoriais inferiores -->
+    <line x1="68"  y1="368" x2="218" y2="368" stroke="#5C1428" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="294" y1="368" x2="444" y2="368" stroke="#5C1428" stroke-width="1.5" stroke-linecap="round"/>
+
+    <!-- Ornamento ✦ central inferior — estrela de 4 pontas desenhada como path -->
+    <path d="
+      M256,374 L258.8,383.2 L268,386 L258.8,388.8 L256,398 L253.2,388.8 L244,386 L253.2,383.2 Z
+    " fill="#5C1428"/>
+    <!-- Pontas horizontais menores do ornamento -->
+    <path d="M240,386 L248,384.8 L250,386 L248,387.2 Z M272,386 L264,384.8 L262,386 L264,387.2 Z" fill="#5C1428"/>
+
+    <!-- Linha fina ornamental abaixo do ornamento -->
+    <line x1="220" y1="408" x2="248" y2="408" stroke="#5C1428" stroke-width="1" stroke-linecap="round"/>
+    <circle cx="256" cy="408" r="1.8" fill="#5C1428"/>
+    <line x1="264" y1="408" x2="292" y2="408" stroke="#5C1428" stroke-width="1" stroke-linecap="round"/>
+
+  </g>
+
+  <!-- ─── MONOGRAM RC ──────────────────────────────────────────── -->
+  <g id="monogram">
+
+    <!--
+    ══════════════════════════════════════════
+    LETRA R — Crimson #C41E3A
+    Serifada, estilo Cormorant Garamond
+    Haste vertical com serifas horizontais
+    Barriga fechada à direita
+    Perna diagonal descendo para o C
+    ══════════════════════════════════════════
+    -->
+    <g id="letter-R">
+
+      <!-- ── Haste vertical do R ─────────────────
+           Faixa estreita: x=[130,148], y=[168,342]
+           Com serifas no topo e na base
+      -->
+
+      <!-- Serifa superior (horizontal) -->
+      <rect x="120" y="168" width="40" height="7" rx="1" fill="#C41E3A"/>
+      <!-- Haste vertical -->
+      <rect x="130" y="168" width="18" height="174" fill="#C41E3A"/>
+      <!-- Serifa inferior esquerda (só a haste principal) -->
+      <rect x="120" y="335" width="30" height="7" rx="1" fill="#C41E3A"/>
+
+      <!-- ── Barriga do R ─────────────────────────
+           Arco semicircular no lado direito da haste
+           Topo ~y=168, base ~y=258, raio ~45
+           Preenchido, depois "cortado" com fundo para criar espessura
+      -->
+      <!-- Barriga externa -->
+      <path d="
+        M 148,175
+        L 148,251
+        C 148,251 200,251 200,213
+        C 200,175 148,175 148,175
+        Z
+      " fill="#C41E3A"/>
+      <!-- Corte interno da barriga (fundo) — cria a espessura da letra -->
+      <path d="
+        M 148,185
+        L 148,241
+        C 148,241 188,241 188,213
+        C 188,185 148,185 148,185
+        Z
+      " fill="#0B0608"/>
+
+      <!-- ── Perna diagonal do R ─────────────────
+           Parte de ~(190,251) desce até ~(244,335)
+           Encontra o C elegantemente
+      -->
+      <path d="
+        M 148,251
+        L 195,251
+        L 251,335
+        L 251,342
+        L 232,342
+        L 232,338
+        L 180,258
+        L 148,258
+        Z
+      " fill="#C41E3A"/>
+      <!-- Serifa base da perna -->
+      <rect x="225" y="335" width="34" height="7" rx="1" fill="#C41E3A"/>
+
+    </g>
+
+    <!--
+    ══════════════════════════════════════════
+    LETRA C — Off-white #F5EDE6
+    Serifada, abertura à direita
+    Extremidade SUPERIOR tem curva para fora
+    evocando o decote strapless do vestido
+    Stroke fino adicional para requinte
+    ══════════════════════════════════════════
+    -->
+    <g id="letter-C">
+
+      <!--
+        C centralizado em x≈310, y≈256
+        Raio externo ≈ 106  →  arco de y≈168 a y≈344, x min ≈204
+        Raio interno ≈  74  →  camada interior
+        Abertura: lado direito (3h no relógio), dos ~145° até ~215°
+
+        O arco vai de ≈ y=176 (topo, virado levemente p/direita)
+                   até ≈ y=336 (base, virado levemente p/direita)
+        passando pela extremidade esquerda x≈204
+      -->
+
+      <!-- Corpo do C — anel de arco aberto -->
+      <!-- Estratégia: path complexo com dois arcos (externo e interno) -->
+      <path d="
+        M 348,200
+        C 340,182 325,170 305,165
+        C 285,160 262,162 245,170
+        C 215,183 197,213 197,256
+        C 197,299 215,329 245,342
+        C 262,350 285,352 305,347
+        C 325,342 340,330 348,312
+
+        L 340,308
+        C 332,325 319,336 301,340
+        C 282,344 261,342 245,334
+        C 218,321 205,295 205,256
+        C 205,217 218,191 245,178
+        C 261,170 282,168 301,172
+        C 319,176 332,187 340,204
+
+        Z
+      " fill="#F5EDE6" stroke="#F5EDE6" stroke-width="0.6"/>
+
+      <!--
+        Terminal SUPERIOR do C — evoca decote strapless
+        A ponta superior flecte para fora e para cima,
+        como a curva do decote ombro-a-ombro
+      -->
+      <path d="
+        M 340,204
+        C 346,194 355,188 366,186
+        C 374,185 379,188 378,194
+        C 377,199 370,201 363,201
+        C 354,201 347,205 344,210
+        L 340,208
+        Z
+      " fill="#F5EDE6" stroke="#F5EDE6" stroke-width="0.5"/>
+
+      <!-- Pequena serifa/acento no topo do terminal — em crimson, sutil -->
+      <path d="M 360,185 L 373,182 L 374,186 L 364,188 Z" fill="#C41E3A"/>
+
+      <!--
+        Terminal INFERIOR do C — mais clean, serifa simples
+      -->
+      <path d="
+        M 340,308
+        C 348,320 358,326 368,326
+        C 376,326 380,322 379,317
+        C 378,312 371,310 363,311
+        C 354,311 346,315 341,320
+        Z
+      " fill="#F5EDE6" stroke="#F5EDE6" stroke-width="0.5"/>
+
+    </g>
+
+    <!-- ── Ponto de fusão R∩C ───────────────────
+         Pequeno elemento onde a perna do R encontra
+         a abertura do C — reforça o entrelaçamento
+    -->
+    <ellipse cx="250" cy="290" rx="4" ry="6"
+             fill="#C41E3A" opacity="0.55"
+             transform="rotate(-35 250 290)"/>
+
+  </g>
+
+</svg>

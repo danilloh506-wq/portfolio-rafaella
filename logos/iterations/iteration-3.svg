@@ -1,0 +1,281 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 600">
+
+  <!-- Background -->
+  <g id="background">
+    <rect width="512" height="600" fill="#0B0608"/>
+  </g>
+
+  <!-- Corner Ornaments (open Art Déco, no closed frame) -->
+  <g id="corner-ornaments">
+
+    <!-- Top-left corner -->
+    <line x1="28" y1="68" x2="28" y2="40" stroke="#C41E3A" stroke-width="2"/>
+    <line x1="68" y1="28" x2="40" y2="28" stroke="#C41E3A" stroke-width="2"/>
+    <line x1="36" y1="74" x2="36" y2="48" stroke="#5C1428" stroke-width="1.5"/>
+    <line x1="74" y1="36" x2="48" y2="36" stroke="#5C1428" stroke-width="1.5"/>
+    <polygon points="28,28 40,34 34,40 22,34" fill="#C41E3A"/>
+
+    <!-- Top-right corner -->
+    <line x1="484" y1="68" x2="484" y2="40" stroke="#C41E3A" stroke-width="2"/>
+    <line x1="444" y1="28" x2="472" y2="28" stroke="#C41E3A" stroke-width="2"/>
+    <line x1="476" y1="74" x2="476" y2="48" stroke="#5C1428" stroke-width="1.5"/>
+    <line x1="438" y1="36" x2="464" y2="36" stroke="#5C1428" stroke-width="1.5"/>
+    <polygon points="484,28 472,34 478,40 490,34" fill="#C41E3A"/>
+
+    <!-- Bottom-left corner -->
+    <line x1="28" y1="532" x2="28" y2="560" stroke="#C41E3A" stroke-width="2"/>
+    <line x1="68" y1="572" x2="40" y2="572" stroke="#C41E3A" stroke-width="2"/>
+    <line x1="36" y1="526" x2="36" y2="552" stroke="#5C1428" stroke-width="1.5"/>
+    <line x1="74" y1="564" x2="48" y2="564" stroke="#5C1428" stroke-width="1.5"/>
+    <polygon points="28,572 40,566 34,560 22,566" fill="#C41E3A"/>
+
+    <!-- Bottom-right corner -->
+    <line x1="484" y1="532" x2="484" y2="560" stroke="#C41E3A" stroke-width="2"/>
+    <line x1="444" y1="572" x2="472" y2="572" stroke="#C41E3A" stroke-width="2"/>
+    <line x1="476" y1="526" x2="476" y2="552" stroke="#5C1428" stroke-width="1.5"/>
+    <line x1="438" y1="564" x2="464" y2="564" stroke="#5C1428" stroke-width="1.5"/>
+    <polygon points="484,572 472,566 478,560 490,566" fill="#C41E3A"/>
+
+  </g>
+
+  <!-- Top Ornamental Rule -->
+  <g id="top-rule">
+    <line x1="80" y1="92" x2="432" y2="92" stroke="#5C1428" stroke-width="1.5"/>
+    <line x1="80" y1="95" x2="432" y2="95" stroke="#C41E3A" stroke-width="0.8" stroke-opacity="0.7"/>
+    <line x1="80" y1="98" x2="432" y2="98" stroke="#5C1428" stroke-width="1.5"/>
+    <!-- Center diamond -->
+    <polygon points="256,92 260,95 256,98 252,95" fill="#C41E3A"/>
+    <!-- Flanking golden diamonds -->
+    <polygon points="180,95 184,92 188,95 184,98" fill="#8B6B4A" opacity="0.8"/>
+    <polygon points="324,95 328,92 332,95 328,98" fill="#8B6B4A" opacity="0.8"/>
+    <!-- Left chevron -->
+    <polyline points="100,88 92,95 100,102" fill="none" stroke="#5C1428" stroke-width="1.5"/>
+    <!-- Right chevron -->
+    <polyline points="412,88 420,95 412,102" fill="none" stroke="#5C1428" stroke-width="1.5"/>
+  </g>
+
+  <!-- Central Icon — silhouette + drapery fusion -->
+  <g id="icon-figure">
+
+    <!-- Main body: crimson silhouette/drapery -->
+    <path fill="#C41E3A" d="
+      M 256 118
+      C 248 118, 234 122, 224 132
+      C 212 144, 208 162, 206 180
+      C 204 200, 206 216, 210 232
+      C 214 250, 220 262, 218 280
+      C 216 300, 206 316, 202 338
+      C 197 364, 200 390, 208 412
+      C 214 428, 222 440, 228 452
+      C 232 460, 236 466, 238 470
+      C 242 474, 248 476, 254 476
+      L 258 476
+      C 264 476, 270 474, 274 470
+      C 276 466, 280 460, 284 452
+      C 290 440, 298 428, 304 412
+      C 312 390, 315 364, 310 338
+      C 306 316, 296 300, 294 280
+      C 292 262, 298 250, 302 232
+      C 306 216, 308 200, 306 180
+      C 304 162, 300 144, 288 132
+      C 278 122, 264 118, 256 118
+      Z
+    "/>
+
+    <!-- Wine shadow/wing — depth and drapery -->
+    <path fill="#5C1428" opacity="0.65" d="
+      M 256 124
+      C 264 124, 278 130, 290 142
+      C 304 156, 310 176, 308 196
+      C 306 218, 298 234, 298 256
+      C 298 278, 308 296, 314 320
+      C 320 348, 318 376, 308 400
+      C 300 420, 288 438, 280 454
+      C 274 464, 268 472, 260 474
+      C 274 470, 288 458, 296 440
+      C 306 418, 310 394, 308 368
+      C 306 344, 298 322, 298 296
+      C 298 272, 308 252, 310 226
+      C 314 198, 312 172, 300 150
+      C 290 132, 274 124, 256 124
+      Z
+    "/>
+
+    <!-- Right side slit (opening of the dress) -->
+    <path fill="#0B0608" opacity="0.6" d="
+      M 304 348
+      C 306 362, 308 378, 308 394
+      C 308 408, 307 422, 306 434
+      C 305 442, 304 450, 302 458
+      L 306 456
+      C 308 448, 309 440, 310 432
+      C 311 420, 312 406, 312 392
+      C 312 376, 310 360, 308 346
+      Z
+    "/>
+
+    <!-- Neckline — strapless soft line -->
+    <path fill="none" stroke="#5C1428" stroke-width="1.4" stroke-linecap="round"
+          d="M 208 180 C 222 172, 240 168, 256 168 C 272 168, 290 172, 304 180"/>
+
+    <!-- Waist — gathered detail -->
+    <path fill="none" stroke="#5C1428" stroke-width="1.2" stroke-linecap="round"
+          d="M 206 280 C 220 273, 238 270, 256 270 C 274 270, 292 273, 306 280"/>
+
+    <!-- Silk highlight left -->
+    <path fill="none" stroke="#F5EDE6" stroke-width="1.8" stroke-linecap="round" opacity="0.18"
+          d="M 216 148 C 210 174, 208 208, 212 240 C 216 272, 222 294, 218 326 C 214 358, 206 382, 210 414"/>
+
+    <!-- Silk highlight right -->
+    <path fill="none" stroke="#F5EDE6" stroke-width="1.2" stroke-linecap="round" opacity="0.10"
+          d="M 296 148 C 302 174, 304 208, 300 240 C 296 272, 290 294, 294 326"/>
+
+  </g>
+
+  <!-- Bottom Ornamental Rule -->
+  <g id="bottom-rule">
+    <line x1="80" y1="420" x2="432" y2="420" stroke="#5C1428" stroke-width="1.5"/>
+    <line x1="80" y1="423" x2="432" y2="423" stroke="#C41E3A" stroke-width="0.8" stroke-opacity="0.7"/>
+    <line x1="80" y1="426" x2="432" y2="426" stroke="#5C1428" stroke-width="1.5"/>
+    <!-- Center diamond -->
+    <polygon points="256,420 260,423 256,426 252,423" fill="#C41E3A"/>
+    <!-- Flanking golden diamonds -->
+    <polygon points="180,423 184,420 188,423 184,426" fill="#8B6B4A" opacity="0.8"/>
+    <polygon points="324,423 328,420 332,423 328,426" fill="#8B6B4A" opacity="0.8"/>
+    <!-- Left chevron -->
+    <polyline points="100,416 92,423 100,430" fill="none" stroke="#5C1428" stroke-width="1.5"/>
+    <!-- Right chevron -->
+    <polyline points="412,416 420,423 412,430" fill="none" stroke="#5C1428" stroke-width="1.5"/>
+  </g>
+
+  <!-- Wordmark -->
+  <g id="wordmark">
+
+    <!-- Separator diamond + flanking dots -->
+    <polygon points="256,438 260,442 256,446 252,442" fill="#C41E3A"/>
+    <circle cx="232" cy="442" r="1.5" fill="#5C1428"/>
+    <circle cx="280" cy="442" r="1.5" fill="#5C1428"/>
+
+    <!-- RAFAELLA — cap height ~38px, baseline y=488, spread across x=88–427 -->
+
+    <!-- R -->
+    <path fill="#F5EDE6" d="
+      M 88 450 L 88 488 L 96 488 L 96 472 L 106 472 L 118 488 L 127 488
+      L 114 470
+      C 121 467, 125 461, 125 453
+      C 125 444, 118 450, 106 450
+      Z
+      M 96 457 L 105 457
+      C 111 457, 117 459, 117 464
+      C 117 469, 111 471, 105 471
+      L 96 471
+      Z
+    "/>
+
+    <!-- A -->
+    <path fill="#F5EDE6" d="
+      M 149 450 L 130 488 L 138 488 L 143 474 L 163 474 L 168 488 L 176 488 L 157 450 Z
+      M 153 462 L 161 462 L 157 472 L 149 472 Z
+    "/>
+
+    <!-- F -->
+    <path fill="#F5EDE6" d="
+      M 183 450 L 183 488 L 191 488 L 191 472 L 211 472 L 211 465 L 191 465 L 191 457 L 215 457 L 215 450 Z
+    "/>
+
+    <!-- A -->
+    <path fill="#F5EDE6" d="
+      M 236 450 L 217 488 L 225 488 L 230 474 L 250 474 L 255 488 L 263 488 L 244 450 Z
+      M 240 462 L 248 462 L 244 472 L 236 472 Z
+    "/>
+
+    <!-- E -->
+    <path fill="#F5EDE6" d="
+      M 270 450 L 270 488 L 306 488 L 306 481 L 278 481 L 278 472 L 301 472 L 301 465 L 278 465 L 278 457 L 304 457 L 304 450 Z
+    "/>
+
+    <!-- L -->
+    <path fill="#F5EDE6" d="
+      M 313 450 L 313 488 L 342 488 L 342 481 L 321 481 L 321 450 Z
+    "/>
+
+    <!-- L -->
+    <path fill="#F5EDE6" d="
+      M 349 450 L 349 488 L 378 488 L 378 481 L 357 481 L 357 450 Z
+    "/>
+
+    <!-- A -->
+    <path fill="#F5EDE6" d="
+      M 400 450 L 381 488 L 389 488 L 394 474 L 414 474 L 419 488 L 427 488 L 408 450 Z
+      M 404 462 L 412 462 L 408 472 L 400 472 Z
+    "/>
+
+    <!-- COSTA — cap height ~26px, baseline y=540, centered, generous spacing -->
+    <!-- C -->
+    <path fill="#F5EDE6" opacity="0.78" d="
+      M 194 514
+      C 186 514, 180 520, 180 528
+      C 180 536, 186 542, 194 542
+      C 199 542, 203 540, 206 537
+      L 202 534
+      C 200 536, 197 537, 194 537
+      C 189 537, 185 533, 185 528
+      C 185 523, 189 519, 194 519
+      C 197 519, 200 520, 202 522
+      L 206 519
+      C 203 516, 199 514, 194 514
+      Z
+    "/>
+
+    <!-- O -->
+    <path fill="#F5EDE6" opacity="0.78" d="
+      M 220 514
+      C 212 514, 206 520, 206 528
+      C 206 536, 212 542, 220 542
+      C 228 542, 234 536, 234 528
+      C 234 520, 228 514, 220 514
+      Z
+      M 220 519
+      C 225 519, 229 523, 229 528
+      C 229 533, 225 537, 220 537
+      C 215 537, 211 533, 211 528
+      C 211 523, 215 519, 220 519
+      Z
+    "/>
+
+    <!-- S -->
+    <path fill="#F5EDE6" opacity="0.78" d="
+      M 244 514
+      C 238 514, 234 518, 234 523
+      C 234 527, 237 530, 241 531
+      L 246 533
+      C 249 534, 250 535, 250 537
+      C 250 539, 248 541, 245 541
+      C 242 541, 239 540, 237 537
+      L 234 540
+      C 236 543, 240 544, 245 544
+      C 251 544, 255 540, 255 536
+      C 255 532, 252 529, 248 528
+      L 243 526
+      C 241 525, 239 524, 239 522
+      C 239 520, 241 518, 244 518
+      C 247 518, 249 519, 251 521
+      L 254 518
+      C 252 516, 248 514, 244 514
+      Z
+    "/>
+
+    <!-- T -->
+    <path fill="#F5EDE6" opacity="0.78" d="
+      M 258 514 L 258 519 L 265 519 L 265 540 L 270 540 L 270 519 L 277 519 L 277 514 Z
+    "/>
+
+    <!-- A -->
+    <path fill="#F5EDE6" opacity="0.78" d="
+      M 293 514 L 280 540 L 285 540 L 288 533 L 300 533 L 303 540 L 308 540 L 295 514 Z
+      M 294 520 L 299 528 L 289 528 Z
+    "/>
+
+  </g>
+
+</svg>

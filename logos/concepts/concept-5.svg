@@ -1,0 +1,314 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400">
+  <defs>
+    <style>
+      .bg         { fill: #0B0608; }
+      .r-fill     { fill: #C41E3A; }
+      .name-fill  { fill: #F5EDE6; }
+      .sub-fill   { fill: #F5EDE6; opacity: 0.65; }
+      .wine-line  { stroke: #5C1428; stroke-width: 1; fill: none; }
+      .wine-fill  { fill: #5C1428; }
+    </style>
+  </defs>
+
+  <!-- ─────────────────────────────────────────────────────── -->
+  <!-- BACKGROUND                                              -->
+  <!-- ─────────────────────────────────────────────────────── -->
+  <g id="background">
+    <rect width="900" height="400" class="bg"/>
+  </g>
+
+  <!-- ─────────────────────────────────────────────────────── -->
+  <!-- R ESTILIZADO                                            -->
+  <!--                                                         -->
+  <!-- Anatomia (coordenadas em espaço 60–300 × 50–370):       -->
+  <!--  • Haste vertical: x=60–90, y=50–370                    -->
+  <!--  • Bowl (contorno externo): arco de y=50 até y=210,     -->
+  <!--    largura máxima ~x=280 — curva generosa = busto        -->
+  <!--  • Bowl (contorno interno / countershaped): retira o    -->
+  <!--    interior usando fill-rule evenodd                     -->
+  <!--  • Perna: parte de y≈210 no meio da haste, desce        -->
+  <!--    curva suave para direita, terminando em x≈280 y≈366  -->
+  <!--    com curva final que evoca drapeado/fenda de vestido   -->
+  <!-- ─────────────────────────────────────────────────────── -->
+  <g id="initial-R">
+
+    <!-- Sombra de profundidade (wine, deslocada 4px) -->
+    <g transform="translate(4,4)" opacity="0.35">
+      <!-- Corpo externo do R (shadow) -->
+      <path fill="#5C1428" d="
+        M 60 56 L 120 56
+        C 182 56 228 68 258 92
+        C 292 118 306 152 302 186
+        C 298 218 280 244 252 260
+        C 238 268 222 274 204 278
+        L 268 348
+        C 276 360 278 368 274 374
+        C 272 378 264 380 252 380
+        L 226 380
+        L 158 278
+        L 128 278 L 128 366 L 136 370 L 136 376
+        L 60 376 L 60 370 L 68 366 L 68 62 L 60 56 Z
+      "/>
+    </g>
+
+    <!-- ── R: contorno externo (haste + bowl + perna) ────── -->
+    <!--
+      A letra é construída em duas partes com fill-rule evenodd:
+        PARTE 1 – contorno externo do R inteiro
+        PARTE 2 – counter shape do bowl (buraco interno)
+
+      Perna (drapeado-vestido):
+        Sai da junção bowl/haste em ~(204,218), vai para direita
+        com uma curva cúbica que primeiro desce suavemente,
+        depois vira para baixo com uma inflexão elegante,
+        terminando em ~(278,366) — como a fenda lateral de um
+        vestido, não uma diagonal seca.
+    -->
+    <path
+      id="R-path"
+      class="r-fill"
+      fill-rule="evenodd"
+      d="
+        M 60 56
+        L 120 56
+        C 184 56, 232 70, 262 96
+        C 296 124, 308 160, 302 196
+        C 296 228, 276 252, 246 266
+        C 232 272, 216 278, 198 280
+
+        C 210 282, 220 286, 228 292
+        L 282 356
+        C 290 366, 292 374, 288 380
+        C 286 384, 278 386, 266 386
+        L 240 386
+        L 226 386
+
+        C 218 386, 212 382, 206 374
+        L 148 282
+        L 128 280
+        L 128 362
+        L 134 366
+        L 138 370
+        L 138 376
+        L 60 376
+        L 60 370
+        L 66 366
+        L 68 362
+        L 68 66
+        L 66 62
+        L 60 56
+        Z
+
+        M 128 72
+        L 128 228
+        L 160 226
+        C 190 224, 214 216, 230 202
+        C 250 184, 256 160, 250 136
+        C 244 112, 230 96, 208 86
+        C 192 78, 170 72, 146 72
+        L 128 72
+        Z
+      "
+    />
+
+    <!-- Serifas da haste principal (topo e base) -->
+    <!-- Serifa topo -->
+    <path class="r-fill" d="M 50 56 L 78 56 L 78 64 C 74 62 70 62 64 62 L 64 66 L 60 66 L 60 56 Z"/>
+    <rect x="50" y="50" width="34" height="8" rx="1.5" class="r-fill"/>
+    <!-- Serifa base esquerda -->
+    <rect x="50" y="368" width="34" height="8" rx="1.5" class="r-fill"/>
+
+    <!-- Serifa base da perna (horizontal, suave — termina a curva-vestido) -->
+    <!--
+      A perna termina em ~(266,386). Serifa horizontal pequena
+      em wine para distinguir o terminus da perna.
+    -->
+    <rect x="230" y="382" width="58" height="6" rx="2" class="r-fill"/>
+
+    <!-- Linha interna no bowl — detalhe sutil que reforça a
+         leitura do "busto": stroke wine levíssimo dentro do counter -->
+    <path
+      fill="none"
+      stroke="#5C1428"
+      stroke-width="1.5"
+      opacity="0.6"
+      d="M 136 84 C 186 80 226 96 244 124 C 260 150 256 182 238 200 C 222 216 196 224 164 226"
+    />
+
+    <!-- Detalhe: pequena curva que reforça a fenda/drapeado na perna -->
+    <!-- Uma linha stroke wine que acompanha a curva interna da perna -->
+    <path
+      fill="none"
+      stroke="#5C1428"
+      stroke-width="1.2"
+      opacity="0.5"
+      d="M 204 280 C 216 294, 234 316, 252 344 C 258 354, 264 366, 268 380"
+    />
+
+  </g>
+
+  <!-- ─────────────────────────────────────────────────────── -->
+  <!-- "AFAELLA" — lado direito, mesma baseline do R           -->
+  <!-- Letras construídas como paths geométricos serifados     -->
+  <!-- Baseline: y=376  |  Cap height: ~80px  |  Topo: y=296  -->
+  <!-- x inicial: 318 (logo após a linha vertical wine)        -->
+  <!-- ─────────────────────────────────────────────────────── -->
+  <g id="name">
+
+    <!-- ── A ─────────────────────────────────── x=318–356 -->
+    <path class="name-fill" fill-rule="evenodd" d="
+      M 337 296 L 356 376 L 348 376 L 343 354 L 331 354 L 326 376 L 318 376 L 337 296 Z
+      M 333 347 L 341 347 L 337 324 Z
+    "/>
+    <rect x="311" y="372" width="16" height="4" rx="1" class="name-fill"/>
+    <rect x="349" y="372" width="16" height="4" rx="1" class="name-fill"/>
+
+    <!-- ── F ─────────────────────────────────── x=368–400 -->
+    <path class="name-fill" d="
+      M 368 296 L 402 296 L 402 304 L 376 304
+      L 376 332 L 399 332 L 399 340 L 376 340
+      L 376 372 L 368 372 Z
+    "/>
+    <rect x="361" y="372" width="15" height="4" rx="1" class="name-fill"/>
+    <rect x="361" y="292" width="41" height="4" rx="1" class="name-fill"/>
+
+    <!-- ── A ─────────────────────────────────── x=406–444 -->
+    <path class="name-fill" fill-rule="evenodd" d="
+      M 425 296 L 444 376 L 436 376 L 431 354 L 419 354 L 414 376 L 406 376 L 425 296 Z
+      M 421 347 L 429 347 L 425 324 Z
+    "/>
+    <rect x="399" y="372" width="16" height="4" rx="1" class="name-fill"/>
+    <rect x="437" y="372" width="16" height="4" rx="1" class="name-fill"/>
+
+    <!-- ── E ─────────────────────────────────── x=454–492 -->
+    <path class="name-fill" d="
+      M 454 296 L 492 296 L 492 304 L 462 304
+      L 462 332 L 488 332 L 488 340 L 462 340
+      L 462 368 L 494 368 L 494 376 L 454 376 Z
+    "/>
+    <rect x="447" y="372" width="15" height="4" rx="1" class="name-fill"/>
+    <rect x="447" y="292" width="45" height="4" rx="1" class="name-fill"/>
+
+    <!-- ── L ─────────────────────────────────── x=500–530 -->
+    <path class="name-fill" d="
+      M 500 296 L 508 296 L 508 368 L 534 368 L 534 376 L 500 376 Z
+    "/>
+    <rect x="493" y="292" width="15" height="4" rx="1" class="name-fill"/>
+    <rect x="493" y="372" width="15" height="4" rx="1" class="name-fill"/>
+
+    <!-- ── L ─────────────────────────────────── x=540–570 -->
+    <path class="name-fill" d="
+      M 540 296 L 548 296 L 548 368 L 574 368 L 574 376 L 540 376 Z
+    "/>
+    <rect x="533" y="292" width="15" height="4" rx="1" class="name-fill"/>
+    <rect x="533" y="372" width="15" height="4" rx="1" class="name-fill"/>
+
+    <!-- ── A ─────────────────────────────────── x=580–618 -->
+    <path class="name-fill" fill-rule="evenodd" d="
+      M 599 296 L 618 376 L 610 376 L 605 354 L 593 354 L 588 376 L 580 376 L 599 296 Z
+      M 595 347 L 603 347 L 599 324 Z
+    "/>
+    <rect x="573" y="372" width="16" height="4" rx="1" class="name-fill"/>
+    <rect x="611" y="372" width="16" height="4" rx="1" class="name-fill"/>
+
+  </g>
+
+  <!-- ─────────────────────────────────────────────────────── -->
+  <!-- ELEMENTO DECORATIVO: linha wine + ornamento ✦           -->
+  <!-- ─────────────────────────────────────────────────────── -->
+
+  <!-- Linha horizontal separadora -->
+  <line x1="312" y1="388" x2="748" y2="388" class="wine-line"/>
+
+  <!-- Ornamento ✦ — estrela de 4 pontas, construída como polygon -->
+  <!-- Posicionado no centro do bloco de texto ~x=530 -->
+  <g id="ornament" transform="translate(530,388)">
+    <!-- Estrela 4 pontas (losango × 2 rotacionados) -->
+    <polygon
+      class="wine-fill"
+      points="0,-6 1.8,-1.8 6,0 1.8,1.8 0,6 -1.8,1.8 -6,0 -1.8,-1.8"
+      opacity="0.85"
+    />
+    <!-- Pontos menores laterais -->
+    <circle cx="-18" cy="0" r="1.5" class="wine-fill" opacity="0.6"/>
+    <circle cx="18" cy="0" r="1.5" class="wine-fill" opacity="0.6"/>
+  </g>
+
+  <!-- ─────────────────────────────────────────────────────── -->
+  <!-- "COSTA" — small caps, letter-spacing generoso           -->
+  <!-- Baseline: y=406  |  Caps height: ~22px  |  Topo: y=384 -->
+  <!-- Alinhado sob "AFAELLA", com recuo de ~32px              -->
+  <!-- ─────────────────────────────────────────────────────── -->
+  <g id="surname">
+
+    <!-- ── C ─────────────────────────── x=340–370 -->
+    <path class="sub-fill" d="
+      M 356 384 C 350 382, 343 382, 337 384
+      C 328 388, 324 396, 326 404
+      C 328 412, 335 418, 344 419
+      C 350 420, 357 418, 362 414
+      L 359 410 C 355 413, 350 415, 344 414
+      C 337 413, 333 408, 332 402
+      C 331 396, 335 390, 342 387
+      C 347 385, 353 385, 358 387
+      L 356 384 Z
+    "/>
+
+    <!-- ── O ─────────────────────────── x=380–414 -->
+    <path class="sub-fill" fill-rule="evenodd" d="
+      M 397 382 C 383 382, 374 390, 374 400
+      C 374 410, 383 418, 397 418
+      C 411 418, 420 410, 420 400
+      C 420 390, 411 382, 397 382 Z
+      M 397 387 C 408 387, 415 393, 415 400
+      C 415 407, 408 413, 397 413
+      C 386 413, 379 407, 379 400
+      C 379 393, 386 387, 397 387 Z
+    "/>
+
+    <!-- ── S ─────────────────────────── x=430–462 -->
+    <path class="sub-fill" d="
+      M 458 386 C 453 382, 446 381, 439 382
+      C 431 384, 427 390, 430 396
+      C 432 400, 437 403, 444 405
+      C 450 407, 454 410, 453 413
+      C 452 416, 447 418, 441 417
+      C 436 416, 432 413, 430 410
+      L 426 413 C 429 418, 435 421, 442 421
+      C 450 421, 458 417, 459 411
+      C 460 405, 455 401, 448 399
+      C 442 397, 437 394, 437 391
+      C 437 388, 441 386, 447 386
+      C 452 386, 456 388, 459 391
+      L 458 386 Z
+    "/>
+
+    <!-- ── T ─────────────────────────── x=474–506 -->
+    <path class="sub-fill" d="
+      M 472 382 L 508 382 L 508 387 L 493 387 L 493 420 L 487 420 L 487 387 L 472 387 Z
+    "/>
+
+    <!-- ── A ─────────────────────────── x=522–558 -->
+    <path class="sub-fill" fill-rule="evenodd" d="
+      M 540 382 L 558 420 L 552 420 L 548 410 L 532 410 L 528 420 L 522 420 L 540 382 Z
+      M 534 405 L 546 405 L 540 390 Z
+    "/>
+
+  </g>
+
+  <!-- ─────────────────────────────────────────────────────── -->
+  <!-- LINHA VERTICAL editorial (esquerda do bloco de texto)   -->
+  <!-- ─────────────────────────────────────────────────────── -->
+  <line
+    x1="306" y1="285"
+    x2="306" y2="430"
+    stroke="#5C1428"
+    stroke-width="1"
+    opacity="0.55"
+  />
+
+  <!-- Pequeno detalhe: dois pontos wine nas extremidades da linha vertical -->
+  <circle cx="306" cy="284" r="2" class="wine-fill" opacity="0.5"/>
+  <circle cx="306" cy="426" r="2" class="wine-fill" opacity="0.5"/>
+
+</svg>
