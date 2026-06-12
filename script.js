@@ -81,7 +81,8 @@ function heroEntrance() {
   const c2 = splitChars(/** @type {HTMLElement} */ (document.getElementById('name-line-2')), true);
 
   gsap.timeline({ defaults: { ease: 'power4.out' } })
-    .from('.hero__eyebrow',  { y: 20, opacity: 0, duration: 0.85 })
+    .from('.hero__eyebrow-wrap', { y: 20, opacity: 0, duration: 0.85 })
+    .to('.hero__eline', { width: 44, duration: 0.7, ease: 'power2.inOut', stagger: 0.14 }, '-=0.35')
     .from(c1, { y: '108%', duration: 1.05, stagger: 0.036 }, '-=0.5')
     .from(c2, { y: '108%', duration: 1.05, stagger: 0.036 }, '-=0.88')
     .from('#hero-rule',    { scaleX: 0, transformOrigin: 'left', duration: 0.85 }, '-=0.42')
@@ -243,10 +244,13 @@ gsap.to('.hero__marble', {
 /* ============================================
    ABOUT REVEAL
    ============================================ */
+gsap.set('.fc', { width: 0, height: 0 });
+
 ScrollTrigger.create({
   trigger: '.js-clip-reveal', start: 'top 76%',
   onEnter() {
     gsap.to('.js-clip-reveal', { clipPath: 'inset(0 0% 0 0)', duration: 1.55, ease: 'power4.inOut' });
+    gsap.to('.fc', { width: 24, height: 24, duration: 0.5, ease: 'power2.out', stagger: 0.09, delay: 0.95 });
   }
 });
 
@@ -268,6 +272,26 @@ document.querySelectorAll('.js-fade-up').forEach(el => {
   gsap.to(el, {
     y: 0, opacity: 1, duration: 1.05, ease: 'power3.out',
     scrollTrigger: { trigger: el, start: 'top 86%' }
+  });
+});
+
+/* ============================================
+   STATS COUNTER
+   ============================================ */
+document.querySelectorAll('.js-counter').forEach(el => {
+  const target = parseInt(el.getAttribute('data-count') ?? '0', 10);
+  let triggered = false;
+  ScrollTrigger.create({
+    trigger: el, start: 'top 88%',
+    onEnter() {
+      if (triggered) return;
+      triggered = true;
+      const proxy = { val: 0 };
+      gsap.to(proxy, {
+        val: target, duration: 1.4, ease: 'power2.out',
+        onUpdate() { el.textContent = String(Math.round(proxy.val)); }
+      });
+    }
   });
 });
 
