@@ -3,7 +3,7 @@
    ============================================ */
 const lenis = new Lenis({
   duration: 1.45,
-  easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+  easing: (/** @type {number} */ t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
   smoothWheel: true,
   wheelMultiplier: 0.88,
 });
@@ -19,8 +19,9 @@ const isMobile = () => window.innerWidth <= 768;
 /* ============================================
    UTILITIES
    ============================================ */
+/** @param {HTMLElement} el @param {boolean} [crimsonFirst] */
 function splitChars(el, crimsonFirst = false) {
-  const text = el.textContent.trim();
+  const text = (el.textContent ?? '').trim();
   el.innerHTML = text.split('').map((c, i) => {
     const cls = crimsonFirst && i === 0 ? 'char__in ini' : 'char__in';
     return `<span class="char"><span class="${cls}">${c === ' ' ? '&nbsp;' : c}</span></span>`;
@@ -28,6 +29,7 @@ function splitChars(el, crimsonFirst = false) {
   return Array.from(el.querySelectorAll('.char__in'));
 }
 
+/** @param {HTMLElement} el */
 function wrapTitleLines(el) {
   const parts = el.innerHTML.split(/<br\s*\/?>/i);
   el.innerHTML = parts.map(p =>
@@ -36,6 +38,7 @@ function wrapTitleLines(el) {
   return Array.from(el.querySelectorAll('.t-line-in'));
 }
 
+/** @param {HTMLElement} el */
 function wrapQuoteLines(el) {
   const p = el.querySelector('p');
   if (!p) return [];
@@ -60,7 +63,8 @@ window.addEventListener('DOMContentLoaded', () => {
     .to('#preloader', {
       yPercent: -100, duration: 1.1, ease: 'power4.inOut', delay: 0.2,
       onComplete() {
-        document.getElementById('preloader').style.display = 'none';
+        const pre = document.getElementById('preloader');
+        if (pre) pre.style.display = 'none';
         lenis.start();
         /* refresh ScrollTrigger depois que o preloader some */
         ScrollTrigger.refresh();
@@ -73,8 +77,8 @@ window.addEventListener('DOMContentLoaded', () => {
    HERO ENTRANCE
    ============================================ */
 function heroEntrance() {
-  const c1 = splitChars(document.getElementById('name-line-1'), true);
-  const c2 = splitChars(document.getElementById('name-line-2'), true);
+  const c1 = splitChars(/** @type {HTMLElement} */ (document.getElementById('name-line-1')), true);
+  const c2 = splitChars(/** @type {HTMLElement} */ (document.getElementById('name-line-2')), true);
 
   gsap.timeline({ defaults: { ease: 'power4.out' } })
     .from('.hero__eyebrow',  { y: 20, opacity: 0, duration: 0.85 })
@@ -89,9 +93,9 @@ function heroEntrance() {
    CURSOR
    ============================================ */
 if (!isMobile()) {
-  const dot   = document.getElementById('cursor');
-  const ring  = document.getElementById('cursor-ring');
-  const label = document.getElementById('cursor-label');
+  const dot   = /** @type {HTMLElement} */ (document.getElementById('cursor'));
+  const ring  = /** @type {HTMLElement} */ (document.getElementById('cursor-ring'));
+  const label = /** @type {HTMLElement} */ (document.getElementById('cursor-label'));
   let mx = 0, my = 0, rx = 0, ry = 0;
 
   document.addEventListener('mousemove', e => {
@@ -127,8 +131,8 @@ if (!isMobile()) {
 /* ============================================
    MOBILE MENU
    ============================================ */
-const burger  = document.getElementById('nav-burger');
-const overlay = document.getElementById('menu-overlay');
+const burger  = /** @type {HTMLElement} */ (document.getElementById('nav-burger'));
+const overlay = /** @type {HTMLElement} */ (document.getElementById('menu-overlay'));
 const mLinks  = Array.from(overlay.querySelectorAll('[data-menu-link]'));
 const mFoot   = overlay.querySelector('.menu-overlay__foot');
 let menuOpen  = false;
@@ -164,7 +168,7 @@ burger.addEventListener('click', () => menuOpen ? closeMenu() : openMenu());
 mLinks.forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
-    const target = link.getAttribute('href');
+    const target = link.getAttribute('href') ?? '';
     closeMenu();
     setTimeout(() => lenis.scrollTo(target, { offset: -68, duration: 1.4 }), 420);
   });
@@ -185,7 +189,7 @@ document.querySelectorAll('a[data-nav]').forEach(a => {
 /* ============================================
    NAV ACTIVE + SCROLLED STATE
    ============================================ */
-const nav      = document.getElementById('nav');
+const nav      = /** @type {HTMLElement} */ (document.getElementById('nav'));
 const navLinks = Array.from(document.querySelectorAll('.nav__links a[data-nav]'));
 
 lenis.on('scroll', ({ scroll }) => nav.classList.toggle('scrolled', scroll > 50));
@@ -204,7 +208,7 @@ lenis.on('scroll', ({ scroll }) => nav.classList.toggle('scrolled', scroll > 50)
 /* ============================================
    BACK TO TOP
    ============================================ */
-const backTop = document.getElementById('back-top');
+const backTop = /** @type {HTMLElement} */ (document.getElementById('back-top'));
 lenis.on('scroll', ({ scroll }) => backTop.classList.toggle('visible', scroll > window.innerHeight * 0.8));
 backTop.addEventListener('click', () => lenis.scrollTo(0, { duration: 1.6 }));
 
@@ -214,10 +218,11 @@ backTop.addEventListener('click', () => lenis.scrollTo(0, { duration: 1.6 }));
 if (!isMobile()) {
   document.querySelectorAll('.nav__links a, .js-magnetic').forEach(el => {
     el.addEventListener('mousemove', e => {
+      const me = /** @type {MouseEvent} */ (e);
       const r = el.getBoundingClientRect();
       gsap.to(el, {
-        x: (e.clientX - r.left - r.width  / 2) * 0.3,
-        y: (e.clientY - r.top  - r.height / 2) * 0.3,
+        x: (me.clientX - r.left - r.width  / 2) * 0.3,
+        y: (me.clientY - r.top  - r.height / 2) * 0.3,
         duration: 0.4, ease: 'power2.out',
       });
     });
@@ -249,7 +254,7 @@ ScrollTrigger.create({
    TITLE REVEALS
    ============================================ */
 document.querySelectorAll('.js-title-reveal').forEach(el => {
-  const lines = wrapTitleLines(el);
+  const lines = wrapTitleLines(/** @type {HTMLElement} */ (el));
   gsap.from(lines, {
     y: '105%', duration: 1.2, ease: 'power4.out', stagger: 0.14,
     scrollTrigger: { trigger: el, start: 'top 82%' }
@@ -269,7 +274,7 @@ document.querySelectorAll('.js-fade-up').forEach(el => {
 /* ============================================
    PHILOSOPHY
    ============================================ */
-const quoteLines = wrapQuoteLines(document.getElementById('philosophy-quote'));
+const quoteLines = wrapQuoteLines(/** @type {HTMLElement} */ (document.getElementById('philosophy-quote')));
 if (quoteLines.length) {
   gsap.from(quoteLines, {
     y: '108%', duration: 1.35, ease: 'power4.out', stagger: 0.22,
@@ -284,6 +289,7 @@ gsap.to('.philosophy__img', {
 /* ============================================
    MOOD STRIP — GSAP marquee com duas fileiras
    ============================================ */
+/** @param {string} trackId @param {number} duration @param {boolean} [reverse] @returns {GsapTween | null} */
 function createMarquee(trackId, duration, reverse = false) {
   const track = document.getElementById(trackId);
   if (!track) return null;
@@ -320,11 +326,11 @@ createMarquee('mood-track-2', 44, true);
    WORK — HORIZONTAL SCROLL (desktop)
    ============================================ */
 gsap.matchMedia().add('(min-width: 769px)', () => {
-  const track   = document.getElementById('work-track');
-  const pin     = document.getElementById('work-pin');
-  const fillEl  = document.getElementById('work-progress-fill');
-  const countEl = document.getElementById('work-count');
-  const cards   = Array.from(track.querySelectorAll('.work__card'));
+  const track   = /** @type {HTMLElement} */ (document.getElementById('work-track'));
+  const pin     = /** @type {HTMLElement} */ (document.getElementById('work-pin'));
+  const fillEl  = /** @type {HTMLElement | null} */ (document.getElementById('work-progress-fill'));
+  const countEl = /** @type {HTMLElement | null} */ (document.getElementById('work-count'));
+  const cards   = /** @type {HTMLElement[]} */ (Array.from(track.querySelectorAll('.work__card')));
   const total   = cards.length;
 
   /* Aguarda fontes + imagens para medidas corretas */
@@ -340,7 +346,7 @@ gsap.matchMedia().add('(min-width: 769px)', () => {
         end: `+=${dist}`,
         scrub: 1,           /* 1 = responsivo e suave */
         anticipatePin: 1,
-        onUpdate(self) {
+        onUpdate(/** @type {ScrollTriggerInstance} */ self) {
           if (fillEl) fillEl.style.width = (self.progress * 100).toFixed(2) + '%';
           if (countEl) {
             const idx = Math.min(Math.ceil(self.progress * total) || 1, total);
@@ -380,10 +386,11 @@ gsap.matchMedia().add('(min-width: 769px)', () => {
     /* 3D tilt */
     cards.forEach(card => {
       card.addEventListener('mousemove', e => {
+        const me = /** @type {MouseEvent} */ (e);
         const r = card.getBoundingClientRect();
         gsap.to(card, {
-          rotateY: ((e.clientX - r.left) / r.width  - 0.5) * 14,
-          rotateX: ((e.clientY - r.top)  / r.height - 0.5) * -9,
+          rotateY: ((me.clientX - r.left) / r.width  - 0.5) * 14,
+          rotateX: ((me.clientY - r.top)  / r.height - 0.5) * -9,
           transformPerspective: 900,
           duration: 0.5, ease: 'power2.out', overwrite: 'auto'
         });
@@ -422,6 +429,7 @@ gsap.matchMedia().add('(min-width: 769px)', () => {
   }
 
   /* Recalcula ao redimensionar */
+  /** @type {ReturnType<typeof setTimeout> | undefined} */
   let resizeTimer;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
@@ -438,9 +446,9 @@ gsap.matchMedia().add('(min-width: 769px)', () => {
    WORK MOBILE — progress via scroll nativo
    ============================================ */
 if (isMobile()) {
-  const pin     = document.getElementById('work-pin');
-  const fillEl  = document.getElementById('work-progress-fill');
-  const countEl = document.getElementById('work-count');
+  const pin     = /** @type {HTMLElement} */ (document.getElementById('work-pin'));
+  const fillEl  = /** @type {HTMLElement | null} */ (document.getElementById('work-progress-fill'));
+  const countEl = /** @type {HTMLElement | null} */ (document.getElementById('work-count'));
   const total   = document.querySelectorAll('.work__card').length;
 
   pin.addEventListener('scroll', () => {

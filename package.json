@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "framer-motion": "^12.40.0",
+    "motion": "^12.40.0"
+  },
+  "devDependencies": {
+    "gsap": "^3.12.5",
+    "lenis": "^1.1.13",
+    "typescript": "^6.0.3"
+  }
+}
